@@ -1,3 +1,5 @@
 <?php
-	echo('secure works!');
+	echo 'secure works!<br/>';
+	echo '$_REQUEST ';
+	print_r($_REQUEST);
 ?>

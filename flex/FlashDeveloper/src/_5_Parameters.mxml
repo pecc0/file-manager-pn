@@ -9,15 +9,15 @@
 			
 			private function sendRequest ():void
 			{
-				trace("gogo");
-				Alert.show("Result=");
+				
+				
 				 var sendVars:URLVariables = new URLVariables();
 				
 				 sendVars.somePostParam = "This is some parameter";
 				
                  var request:URLRequest = new URLRequest();
                  request.data = sendVars;
-                 request.url = "https://localhost";
+                 request.url = "https://localhost/secure/index.php?a=b";
                  request.method = URLRequestMethod.POST;
 
 
@@ -37,32 +37,32 @@
 			}
 			
 			private function configureListeners(dispatcher:IEventDispatcher):void {
-				dispatcher.addEventListener(Event.OPEN, openHandler);
-				dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-				dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-				dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+				//dispatcher.addEventListener(Event.OPEN, openHandler);
+				//dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
+				//dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+				//dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 				dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 			}
 
 		
 			private function openHandler(event:Event):void {
-				trace("openHandler: " + event);
+				Alert.show("openHandler: " + event);
 			}
 
 			private function progressHandler(event:ProgressEvent):void {
-				trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
+				Alert.show("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
 			}
 
 			private function securityErrorHandler(event:SecurityErrorEvent):void {
-				trace("securityErrorHandler: " + event);
+				Alert.show("securityErrorHandler: " + event);
 			}
 
 			private function httpStatusHandler(event:HTTPStatusEvent):void {
-				trace("httpStatusHandler: " + event);
+				Alert.show("httpStatusHandler: " + event);
 			}
 
 			private function ioErrorHandler(event:IOErrorEvent):void {
-				trace("ioErrorHandler: " + event);
+				Alert.show("ioErrorHandler: " + event);
 			}
 
 		]]>
