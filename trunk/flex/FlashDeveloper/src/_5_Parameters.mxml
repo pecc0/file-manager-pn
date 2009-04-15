@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.Alert;
+	
+			
+			private function sendRequest ():void
+			{
+				trace("gogo");
+				Alert.show("Result=");
+				 var sendVars:URLVariables = new URLVariables();
+				
+				 sendVars.somePostParam = "This is some parameter";
+				
+                 var request:URLRequest = new URLRequest();
+                 request.data = sendVars;
+                 request.url = "https://localhost";
+                 request.method = URLRequestMethod.POST;
+
+
+				 var loader:URLLoader = new URLLoader ();
+			
+ 				 loader.addEventListener("complete", xmlLoaded);
+ 				 configureListeners(loader);
+	
+				 function xmlLoaded(event:Event):void
+				 {
+					Alert.show("Result="+loader.data);
+				 } 
+
+				 
+				 loader.load(request);
+			
+			}
+			
+			private function configureListeners(dispatcher:IEventDispatcher):void {
+				dispatcher.addEventListener(Event.OPEN, openHandler);
+				dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
+				dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+				dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+				dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			}
+
+		
+			private function openHandler(event:Event):void {
+				trace("openHandler: " + event);
+			}
+
+			private function progressHandler(event:ProgressEvent):void {
+				trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
+			}
+
+			private function securityErrorHandler(event:SecurityErrorEvent):void {
+				trace("securityErrorHandler: " + event);
+			}
+
+			private function httpStatusHandler(event:HTTPStatusEvent):void {
+				trace("httpStatusHandler: " + event);
+			}
+
+			private function ioErrorHandler(event:IOErrorEvent):void {
+				trace("ioErrorHandler: " + event);
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:VBox>
+		<mx:Button label="Send" click="sendRequest()"/>
+	</mx:VBox>
+	
+	
+	
+</mx:Application>
