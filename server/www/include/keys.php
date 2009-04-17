@@ -1,3 +1,0 @@
-<?php 
-$shmTextsID=1;
-?>
