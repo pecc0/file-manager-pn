@@ -21,3 +21,6 @@
 C {{{netstat -b}}} можеш да видиш кое какво е заело.
 
 Спираш нещата които ползват този порт-той е за HTTP.
+
+Как да си направим RSA ключ като използваме {{{openssl}}}:<br/>
+http://www.vanemery.com/Linux/Apache/apache-SSL.html
