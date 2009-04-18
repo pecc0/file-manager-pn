@@ -17,8 +17,11 @@ function getString($textId)
 	//return $_SESSION['TEXTS_ARRAY']["bg"][$textId];
 	switch($textId) {
 		case "badUser": return "Лошо име: \"%s\"";
-		case "badPass": return "Лоша парола: \"%s\"";
-		case "userExist": return "Потребителя %s вече съществува";
+		case "shortPass": return "Паролата Ви е прекалени кратка";
+		case "userExist": return "Потребителят %s вече съществува";
+		case "userNotExist": return "Не съществува потребител %s";
+		case "regSuccessful": return "Регистрацията беше успешна";
+		case "wrongPass": return "Грешна парола";
 	}
 }
 
