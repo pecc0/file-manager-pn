@@ -44,7 +44,7 @@
 	<mx:VBox>
 		<mx:TextInput id="idUser"></mx:TextInput>
 		<mx:TextInput id="idPass" displayAsPassword="true"></mx:TextInput>
-		<mx:Button label="Login" click="sendLoginData('petko', 'pp')"/>
+		<mx:Button label="Login" click="sendLoginData(idUser.text, idPass.text)"/>
 		<mx:Button label="Register" click="sendRegisterData()"/>
 	</mx:VBox>
 </mx:Application>
