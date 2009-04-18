@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Инсталацията на Apache2.2 с PHP по Windows е доста лесна...
+Инсталацията на Apache2.2 с PHP под Windows е доста лесна...
 
 
 = Details =
