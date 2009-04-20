@@ -1,5 +1,5 @@
 ﻿<?php 
-
+include 'constants.php';
 //print_r($_SESSION);
 //error_log('txt'. $TEXTS_ARRAY . ' ' . print_r($TEXTS_ARRAY));
 //error_log("dump". var_dump($GLOBALS));
@@ -14,6 +14,19 @@
 //}
 function getString($textId)
 {
+	global $usersHome;
+	global $textsXml;
+	if(!isset($textsXml))
+	{
+		$textsXml = new DOMDocument();
+		$textsXml->load($usersHome . "/texts.xml");
+	}
+	
+	$xp = new DOMXPath($textsXml );
+	
+	return $xp->evaluate("string(/Texts/Text[@id='" . $textId . "'])"); 
+	
+	/*
 	//return $_SESSION['TEXTS_ARRAY']["bg"][$textId];
 	switch($textId) {
 		case "badUser": return "Лошо име: \"%s\"";
@@ -23,6 +36,7 @@ function getString($textId)
 		case "regSuccessful": return "Регистрацията беше успешна";
 		case "wrongPass": return "Грешна парола";
 	}
+	*/
 }
 
 ?>
