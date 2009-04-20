@@ -1,5 +1,7 @@
 ﻿<?php
 	//echo('works!');
 	//print_r($_REQUEST);
-	echo (include 'texts.php');
+	print_r( $_SESSION);
+	echo session_id() ;
+	echo SID;
 ?>

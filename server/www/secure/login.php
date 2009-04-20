@@ -19,11 +19,12 @@
 		echo getString("wrongPass");
 		die;
 	}
-	//session_start();
+	session_start();
 	include 'getIP.php';
 	$_SESSION['REMOTE_IP'] = getip();
-	//echo SID;
-	echo $_SESSION['REMOTE_IP'];
+	$_SESSION['UNAME'] = $user;
+	echo SID;
+	//echo $_SESSION['REMOTE_IP'];
 
 	//realpath()
 ?>
