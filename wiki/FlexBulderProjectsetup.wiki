@@ -1,0 +1,11 @@
+#summary Как да Подкараш проекта на Flex Bulder
+
+ # Тук пише как се инсталира Sublipse - SVN plugin за Eclipse (съответно Flex Builder) http://www.nodans.com/index.cfm/2007/10/8/Adding-Subclipse-to-Flex-Builder-3-Standalone
+ # Как да подкараш проекта:
+  * През Sublipse в SVN Repository добавяш проекта (https://file-manager-pn.googlecode.com/svn/trunk)
+  * След това намираш trunk/flex/project и му даваш Checkout
+  * Трябва да ти се появи напълно функциониращ Flex проект
+  * Дясно копче на src директорията и копираш каквото пише в Location (C:\Documents and Settings\PetkoLtd\My Documents\Flex Builder 3\filemanager_swf\src)
+  * Window->Preferences->General->Workspace->Linked Resources->Добавяш нов ресурс с име FILEMANAGERSRC и Location каквото си копирал
+  * От SVN Repository перспективата Checkout-ваш flex/project_air
+  * По този начин сорса на флекса ще е на едно място, а проекта project_air ще се ползва само за да си направиш AIR приложение
