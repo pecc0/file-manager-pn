@@ -24,9 +24,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src</name>
+			<name>external_src</name>
 			<type>2</type>
-			<locationURI>FILEMANAGERSRC</locationURI>
+			<location>C:/Documents and Settings/PetkoLtd/My Documents/Flex Builder 3/filemanager_swf/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>
