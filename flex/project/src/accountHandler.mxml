@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300">
 	
 	<mx:Script>
 		<![CDATA[
@@ -38,13 +38,13 @@
 				}
 				dataPost.doPost();
 			}
-		]]>
+		]]> 
 	</mx:Script>
 
-	<mx:VBox>
+	<mx:VBox x="102.5" y="71" horizontalAlign="center" height="145" width="195" verticalAlign="middle">
 		<mx:TextInput id="idUser"></mx:TextInput>
 		<mx:TextInput id="idPass" displayAsPassword="true"></mx:TextInput>
 		<mx:Button label="Login" click="sendLoginData(idUser.text, idPass.text)"/>
 		<mx:Button label="Register" click="sendRegisterData()"/>
 	</mx:VBox>
-</mx:Application>
+</mx:Module>
