@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*"
-	horizontalAlign="center" verticalAlign="middle">
-	<ns1:accountHandler x="205.5" y="65">
-	</ns1:accountHandler>
-	
-</mx:WindowedApplication>

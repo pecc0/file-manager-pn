@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*"
+	horizontalAlign="center" verticalAlign="middle" currentState="enterServer">
+		<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			private function sendSessionRequest():void
+			{
+				DataPost.setSetverUrl(idServer.text);
+				var dataPost:DataPost = new DataPost(new URLVariables());
+				dataPost.setUrl("/secure/index.php");
+				dataPost.onComplete = function(request:URLRequest, loader:URLLoader):void
+				{
+					//Alert.show("session:" + loader.data);
+					var result:String = loader.data;
+					if (result.length > 0) {
+						DataPost.setSID(result);
+						currentState = "login";
+					}
+				}
+				dataPost.doPost();
+			}
+		]]> 
+	</mx:Script>
+	<mx:states>
+		<mx:State name="login">
+			<mx:AddChild position="lastChild">
+				<ns1:FileManagerMain>
+				</ns1:FileManagerMain>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="enterServer">
+			<mx:AddChild position="lastChild">
+				<mx:HBox >
+					<mx:Label text="Въведете URL на сървъра"/>
+					<mx:TextInput id="idServer"/>
+					<mx:Button label="OK" click="sendSessionRequest();"/>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+</mx:WindowedApplication>

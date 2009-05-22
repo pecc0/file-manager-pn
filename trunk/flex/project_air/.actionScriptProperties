@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<actionScriptProperties mainApplicationPath="fileManager.mxml" version="3">
+<actionScriptProperties mainApplicationPath="FileManagerApplication.mxml" version="3">
 <compiler additionalCompilerArguments="-locale en_US" copyDependentFiles="true" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersion="9.0.28" htmlPlayerVersionCheck="true" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" useApolloConfig="true" verifyDigests="true" warn="true">
 <compilerSourcePath>
 <compilerSourcePathEntry kind="1" linkType="1" path="external_src"/>
@@ -11,10 +11,10 @@
 <sourceAttachmentPath/>
 </compiler>
 <applications>
-<application path="fileManager.mxml"/>
+<application path="FileManagerApplication.mxml"/>
 </applications>
 <modules>
-<module application="src/fileManager.mxml" destPath="accountHandler.swf" optimize="true" sourcePath="external_src/accountHandler.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="FileManagerMain.swf" optimize="true" sourcePath="external_src/FileManagerMain.mxml"/>
 </modules>
 <buildCSSFiles/>
 </actionScriptProperties>
