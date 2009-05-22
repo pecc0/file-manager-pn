@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
 	
 	<mx:Script>
 		<![CDATA[
@@ -9,7 +9,7 @@
 			private function sendLoginData(aUser:String, aPass:String):void
 			{
 				var dataPost:DataPost = new DataPost(new URLVariables());
-				dataPost.setUrl("login.php");
+				dataPost.setUrl("/secure/login.php");
 				dataPost.getData().user = aUser;
 				dataPost.getData().pass = aPass;
 				dataPost.onComplete = function(request:URLRequest, loader:URLLoader):void
@@ -21,7 +21,7 @@
 			private function sendRegisterData ():void
 			{
 				var dataPost:DataPost = new DataPost(new URLVariables());
-				dataPost.setUrl("register.php");
+				dataPost.setUrl("/secure/register.php");
 				dataPost.getData().user = idUser.text;
 				dataPost.getData().pass = idPass.text;
 				dataPost.onComplete = function(request:URLRequest, loader:URLLoader):void
@@ -41,7 +41,7 @@
 		]]> 
 	</mx:Script>
 
-	<mx:VBox x="102.5" y="71" horizontalAlign="center" height="145" width="195" verticalAlign="middle">
+	<mx:VBox horizontalAlign="center" height="145" width="195" verticalAlign="middle">
 		<mx:TextInput id="idUser"></mx:TextInput>
 		<mx:TextInput id="idPass" displayAsPassword="true"></mx:TextInput>
 		<mx:Button label="Login" click="sendLoginData(idUser.text, idPass.text)"/>
