@@ -28,6 +28,18 @@
 		
 		private var loader:URLLoader;
 		
+		private static var serverUrl:String;
+		
+		private static var sessionId:String;
+		
+		public static function setSetverUrl(url:String):void {
+			serverUrl = url;
+		}
+		
+		public static function setSID(sid:String):void {
+			sessionId = sid;
+		}
+		
 		public function DataPost(dataSent:Object) 
 		{
 			
@@ -39,6 +51,9 @@
 		
 		public function setUrl(url:String):void
 		{
+			if (url.charAt(0) == "/") {
+				url = serverUrl + url;
+			}
 			request.url = url;
 		}
 		
@@ -55,7 +70,7 @@
 		public function doPost():void
 		{
 			 request.method = URLRequestMethod.POST;
-
+			 trace("Requesting: " + request.url);
 			 loader.addEventListener("complete", xmlLoaded);
 			 configureListeners(loader);
 			 

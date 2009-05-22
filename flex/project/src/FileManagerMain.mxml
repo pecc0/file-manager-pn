@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*">
+	<ns1:AccountHandler>
+	</ns1:AccountHandler>
+	
+</mx:Module>
