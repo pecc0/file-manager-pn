@@ -15,6 +15,7 @@
 					var result:String = loader.data;
 					if (result.length > 0) {
 						DataPost.setSID(result);
+						trace("SID:" + result);
 						currentState = "login";
 					}
 				}
