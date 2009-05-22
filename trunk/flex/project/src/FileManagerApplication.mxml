@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:ns1="*"
+	applicationComplete="init()">
+	<mx:Script>
+        <![CDATA[
+        	import mx.controls.Alert;
+	        import mx.utils.URLUtil;
+	        private function init():void {
+	        	
+		        DataPost.setSetverUrl(
+		        	URLUtil.getProtocol(Application.application.loaderInfo.url) + "://" +
+		        	URLUtil.getServerNameWithPort(Application.application.loaderInfo.url));
+	        }
+        ]]>
+    </mx:Script>
+	<ns1:FileManagerMain>
+	</ns1:FileManagerMain>
+
+</mx:Application>
