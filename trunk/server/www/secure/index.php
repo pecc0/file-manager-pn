@@ -3,7 +3,8 @@
 	//echo '$_REQUEST ';
 	//print_r($_SERVER);
 	//print_r($_ENV);
-	echo ini_get('include_path');
+	session_start();
+	echo SID;
 	
 	
 	//echo (include 'texts.php');
