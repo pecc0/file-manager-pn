@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-	
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="550" horizontalAlign="center" verticalAlign="bottom" borderStyle="outset" styleName="appAccount" currentState="login">
+	<mx:states>
+		<mx:State name="login">
+			<mx:SetEventHandler target="{button1}" name="click" handler="sendLoginData(idUser.text, idPass.text)"/>
+		</mx:State>
+		<mx:State name="register">
+			<mx:AddChild relativeTo="{formitem1}" position="before">
+				<mx:TextInput/>
+			</mx:AddChild>
+			<mx:SetEventHandler target="{button1}" name="click" handler="sendRegisterData()"/>
+		</mx:State>
+	</mx:states>
+	<mx:Style source="../res/general.css"/>
 	<mx:Script>
 		<![CDATA[
 			import mx.rpc.events.ResultEvent;
@@ -38,13 +49,42 @@
 				}
 				dataPost.doPost();
 			}
+			
 		]]> 
 	</mx:Script>
-
-	<mx:VBox horizontalAlign="center" height="145" width="195" verticalAlign="middle">
-		<mx:TextInput id="idUser"></mx:TextInput>
-		<mx:TextInput id="idPass" displayAsPassword="true"></mx:TextInput>
-		<mx:Button label="Login" click="sendLoginData(idUser.text, idPass.text)"/>
-		<mx:Button label="Register" click="sendRegisterData()"/>
+	<mx:VBox  horizontalAlign="left" verticalAlign="top" verticalGap="5" borderStyle="outset">
+		<mx:Canvas width="100%" height="101" alpha="1.0" cornerRadius="0">
+			<mx:Label x="230.5" y="10" text="liPA Server" width="309" height="70" enabled="true" fontSize="50"/>
+		</mx:Canvas>
+		<mx:HBox width="100%" height="302" horizontalGap="5">
+			<mx:Canvas width="200" height="302">
+				<mx:Button x="82" y="250" label="Log in" width="108" height="28" click="currentState='login'"/>
+			</mx:Canvas>
+			<mx:Form width="360" height="100%">
+				<mx:FormHeading label="Login/Register" width="322"/>
+				<mx:VBox width="318" height="90%" borderStyle="outset">
+					<mx:Spacer width="30" height="30"/>
+					<mx:FormItem label="User">
+						<mx:TextInput id="idUser"/>
+					</mx:FormItem>
+					<mx:FormItem label="Pass">
+						<mx:TextInput id="idPass"/>
+					</mx:FormItem>
+					<mx:FormItem label="Tree" id="formitem1">
+						<mx:TextInput/>
+					</mx:FormItem>
+					<mx:Spacer width="30" height="30"/>
+					<mx:Button label="Climb in" id="button1"/>
+				</mx:VBox>
+			</mx:Form>
+			<mx:Canvas width="200" height="302">
+				<mx:Button x="10" y="249" label="Register" width="108" height="28" click="currentState='register'"/>
+			</mx:Canvas>
+		</mx:HBox>
+		<mx:Canvas width="100%" height="87">
+			<mx:Label x="462" y="39" text="Developed &amp; designed by 5&amp;CO" width="298" height="38" fontSize="18"/>
+		</mx:Canvas>
+		
 	</mx:VBox>
+	
 </mx:Module>
