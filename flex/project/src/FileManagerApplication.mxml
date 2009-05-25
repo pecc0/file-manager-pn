@@ -2,7 +2,7 @@
 <mx:Application 
 	xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:ns1="*"
-	applicationComplete="init()">
+	applicationComplete="init()" height="611">
 	<mx:Script>
         <![CDATA[
         	import mx.controls.Alert;
