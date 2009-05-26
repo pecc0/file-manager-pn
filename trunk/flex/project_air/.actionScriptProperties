@@ -15,6 +15,9 @@
 </applications>
 <modules>
 <module application="src/FileManagerApplication.mxml" destPath="FileManagerMain.swf" optimize="true" sourcePath="external_src/FileManagerMain.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="AccountHandler.swf" optimize="true" sourcePath="external_src/AccountHandler.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="FileHandler.swf" optimize="true" sourcePath="external_src/FileHandler.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="PaintHandler.swf" optimize="true" sourcePath="external_src/PaintHandler.mxml"/>
 </modules>
 <buildCSSFiles/>
 </actionScriptProperties>
