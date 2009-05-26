@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*"
-	horizontalAlign="center" verticalAlign="middle" currentState="enterServer">
+	horizontalAlign="center" verticalAlign="middle" currentState="enterServer" height="620" width="840">
 		<mx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -29,6 +29,8 @@
 				<ns1:FileManagerMain>
 				</ns1:FileManagerMain>
 			</mx:AddChild>
+			<mx:SetProperty name="width" value="840"/>
+			<mx:SetProperty name="height" value="615"/>
 		</mx:State>
 		<mx:State name="enterServer">
 			<mx:AddChild position="lastChild">
