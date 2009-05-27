@@ -11,7 +11,7 @@
 	<Text id='logInTxt'>Вход</Text>
 	<Text id='accountsTitle'>liPA Server</Text>
 	<Text id='accountsFooter'>Дизайн: Никсъна</Text>
-	<Text id='badUser'>Лошо име: \"{0}\"</Text>
+	<Text id='badUser'>Лошо име: "{0}" </Text>
 	<Text id='shortPass'>Паролата Ви е прекалени кратка</Text>
 	<Text id='userExist'>Потребителят {0} вече съществува</Text>
 	<Text id='userNotExist'>Не съществува потребител {0}</Text>

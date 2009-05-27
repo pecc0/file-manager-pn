@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0"?>
 <Texts>
 	<Text id='userName'>User</Text>
-	<Text id='userName'>User</Text>
 	<Text id='userPass'>Pass</Text>
 	<Text id='confirmPass'>Confirm Pass</Text>
 	<Text id='tree'>Tree</Text>

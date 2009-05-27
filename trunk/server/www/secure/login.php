@@ -4,7 +4,7 @@
 	include 'loginCheck.php';
 	if (!file_exists($usersHome . '/' . $user)) 
 	{
-		printf(getString("userNotExist"), $user);
+		printf("userNotExist(%s)", $user);
 		die;
 	}
 	chdir(realpath($usersHome . '/' . $user));
@@ -16,14 +16,14 @@
 	
 	if ($rpass != $password)
 	{
-		echo getString("wrongPass");
+		echo "wrongPass";
 		die;
 	}
-	session_start();
-	include 'getIP.php';
-	$_SESSION['REMOTE_IP'] = getip();
-	$_SESSION['UNAME'] = $user;
-	echo SID;
+	//session_start();
+	//include 'getIP.php';
+	//$_SESSION['REMOTE_IP'] = getip();
+	//$_SESSION['UNAME'] = $user;
+	echo "OK";
 	//echo $_SESSION['REMOTE_IP'];
 
 	//realpath()

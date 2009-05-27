@@ -14,6 +14,7 @@ include 'constants.php';
 //}
 function getString($textId)
 {
+/*
 	global $usersHome;
 	global $textsXml;
 	if(!isset($textsXml))
@@ -25,7 +26,8 @@ function getString($textId)
 	$xp = new DOMXPath($textsXml );
 	
 	return $xp->evaluate("string(/Texts/Text[@id='" . $textId . "'])"); 
-	
+	*/
+	return $textId;
 	/*
 	//return $_SESSION['TEXTS_ARRAY']["bg"][$textId];
 	switch($textId) {
