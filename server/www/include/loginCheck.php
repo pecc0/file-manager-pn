@@ -6,13 +6,13 @@ include 'constants.php';
 $user=$_POST["user"];
 
 if (!ereg("^[a-zA-Z0-9]+$", $user)){
-	printf(getString("badUser"), $user);
+	printf("badUser(%s)", urlencode($user));
 	die;
 }
 
 $password = $_POST["pass"];
 if (!ereg("^.+$", $password)){
-	printf(getString("shortPass"), $password);
+	printf("shortPass(%s)", $password);
 	die;
 }
 

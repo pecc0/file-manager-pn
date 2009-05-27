@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	//$_POST["user"]
 	//print_r($_SERVER);
 	//echo $_ENV["HOME"];
@@ -12,7 +12,7 @@
 	chdir(realpath($usersHome));
 	if (file_exists($user)) 
 	{
-		printf(getString("userExist"), $user);
+		printf("userExist(%s)", $user);
 		die;
 	}
 	mkdir($user);
@@ -29,7 +29,7 @@
 	$pass = $root->appendChild($doc->createElement("Pass"));
 	$pass -> appendChild($doc->createTextNode($password));
 	$doc->save($confXml);
-	echo getString("regSuccessful");
+	echo "OK";
 	//mkdir('pdp');
 	//exists($usersHome . $_POST["user"]);
 ?>
