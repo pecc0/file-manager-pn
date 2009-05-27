@@ -17,6 +17,7 @@
 						DataPost.setSID(result);
 						trace("SID:" + result);
 						currentState = "login";
+						TextI18n.init();
 					}
 				}
 				dataPost.doPost();
