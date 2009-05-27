@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*"
-	horizontalAlign="center" verticalAlign="middle" currentState="enterServer" height="620" width="840">
+	horizontalAlign="center" verticalAlign="middle" currentState="enterServer" 
+	width="840" 
+	height="615"
+	creationComplete="onInit()"
+	>
 		<mx:Script>
 		<![CDATA[
+			import mx.events.ChildExistenceChangedEvent;
 			import mx.controls.Alert;
-			private function sendSessionRequest():void
+			private function enterUrl():void
 			{
 				DataPost.setSetverUrl(idServer.text);
-				var dataPost:DataPost = new DataPost(new URLVariables());
-				dataPost.setUrl("/secure/index.php");
-				dataPost.onComplete = function(request:URLRequest, loader:URLLoader):void
-				{
-					//Alert.show("session:" + loader.data);
-					var result:String = loader.data;
-					if (result.length > 0) {
-						DataPost.setSID(result);
-						trace("SID:" + result);
-						currentState = "login";
-						TextI18n.init();
-					}
-				}
-				dataPost.doPost();
+				fmMain.addEventListener(FileManagerMain.MANAGER_INIT, onManagerInit);
+				fmMain.initManager();
+				
+			}
+			
+			private function onManagerInit(event:Event):void {
+				currentState = "enjoy"; 
+			}
+			
+			private function onInit():void {
+				
 			}
 		]]> 
 	</mx:Script>
 	<mx:states>
-		<mx:State name="login">
-			<mx:AddChild position="lastChild">
-				<ns1:FileManagerMain>
-				</ns1:FileManagerMain>
-			</mx:AddChild>
-			<mx:SetProperty name="width" value="840"/>
-			<mx:SetProperty name="height" value="615"/>
+		<mx:State name="enjoy">
+			<mx:SetProperty target="{fmMain}" name="visible" value="true">
+			</mx:SetProperty> 
+			<mx:SetProperty target="{fmMain}" name="height" value="100%">
+				
+			</mx:SetProperty>
 		</mx:State>
 		<mx:State name="enterServer">
 			<mx:AddChild position="lastChild">
 				<mx:HBox >
-					<mx:Label text="Въведете URL на сървъра"/>
-					<mx:TextInput id="idServer"/>
-					<mx:Button label="OK" click="sendSessionRequest();"/>
+					<mx:Label text="Enter server URL:"/>
+					<mx:TextInput id="idServer" text="https://localhost"/>
+					<mx:Button label="OK" click="enterUrl();"/>
 				</mx:HBox>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
+	<ns1:FileManagerMain id="fmMain" creationComplete="onInit()" visible="false" height="0">
+	</ns1:FileManagerMain>
 </mx:WindowedApplication>
