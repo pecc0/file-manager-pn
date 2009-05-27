@@ -12,11 +12,11 @@
 		        DataPost.setSetverUrl(
 		        	URLUtil.getProtocol(Application.application.loaderInfo.url) + "://" +
 		        	URLUtil.getServerNameWithPort(Application.application.loaderInfo.url));
-		        TextI18n.init();
+		        fmMain.initManager();
 	        }
         ]]>
     </mx:Script>
-	<ns1:FileManagerMain>
+	<ns1:FileManagerMain id="fmMain">
 	</ns1:FileManagerMain>
 
 </mx:Application>

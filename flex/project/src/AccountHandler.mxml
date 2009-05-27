@@ -40,13 +40,14 @@
 				dataPost.onComplete = function(request:URLRequest, loader:URLLoader):void
 				{
 					//Alert.show("url:" + request.url + "\r\nResult="+loader.data);
-					if (loader.data == 'OK')
+					var result:String = "" + loader.data;
+					if (result == 'OK')
 					{
 						sendLoginData(dataPost.getData().user, dataPost.getData().pass);
 					}
 					else
 					{
-						Alert.show(loader.data);
+						Alert.show(TextI18n.getInstance().getText(result));
 					}
 				}
 				dataPost.doPost();

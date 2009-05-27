@@ -6,6 +6,8 @@ package
 	import flash.net.URLRequest;
 	import flash.net.URLVariables;
 	
+	import mx.utils.StringUtil;
+	
 	/**
 	 * Text internationalization 
 	 */
@@ -41,12 +43,40 @@ package
 			
 		}
 		
+		/**
+		 * Processes the input rich text ID and returns the corresponding localized string
+		 * The rich ID is composed by a text ID and optionally one or more parameters enclosed
+		 * in parenthesis e.g. badUser(Dancho) 
+		 * 
+		 */
 		[Bindable("textI18nChanged")]
-		public function getText(textId:String):String {
+		public function getText(textRichId:String):String {
+			//extract the text ID
+			var idRegExp:RegExp = /^[a-zA-Z]+/;
+			var textId:String = idRegExp.exec(textRichId)[0];
+		
 			if (texts != null) {
 				var nodes:XMLList = texts.Text.(@id==textId);
 				if (nodes.length() > 0) {
-					return nodes[0].text();
+					var text:String = nodes[0].text();
+					
+					//extract the parameters (they are enclosed in parenthesis)
+					var paramsRegExp:RegExp = /\([^\)]+\)/;
+					var parametersResult:Object = paramsRegExp.exec(textRichId);
+					var parameters:Array = null;
+					if (parametersResult != null) {
+						var strParams:String = parametersResult[0];
+						//remove the parenthesis
+						strParams = strParams.substr(1, strParams.length - 2);
+						parameters = strParams.split(",");
+						for (var i:String in parameters) {
+							parameters[i] = unescape(parameters[i]);
+						}
+						text = StringUtil.substitute(text, parameters);
+					}
+					
+					
+					return text;
 				}
 			}
 			return textId;
