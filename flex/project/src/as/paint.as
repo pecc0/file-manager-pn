@@ -2,7 +2,7 @@
 
 import com.adobe.images.JPGEncoder;
 import flash.net.URLRequest;
-function sendFile():void {
+private function sendFile():void {
 	var jpgSource:BitmapData = new BitmapData (100, 50);
 	jpgSource.draw(sketch_mc);
 	

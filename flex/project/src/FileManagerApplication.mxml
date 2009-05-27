@@ -12,6 +12,7 @@
 		        DataPost.setSetverUrl(
 		        	URLUtil.getProtocol(Application.application.loaderInfo.url) + "://" +
 		        	URLUtil.getServerNameWithPort(Application.application.loaderInfo.url));
+		        TextI18n.init();
 	        }
         ]]>
     </mx:Script>
