@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*">
-	<ns1:AccountHandler>
-	</ns1:AccountHandler>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*" 
+	width="100%" 
+	height="100%"
+	horizontalAlign="center" 
+	verticalAlign="middle"
+	 currentState="notInitted"
+	
+	 >
+	<mx:states>
+		<mx:State name="notInitted">
+			<mx:AddChild position="lastChild">
+				<mx:Label text="initializing..."/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="accounts" id="accounts">
+			<mx:AddChild position="lastChild">
+				<ns1:AccountHandler id="accounthandler1">
+				</ns1:AccountHandler>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+		public static const MANAGER_INIT:String="managerInit";
+		
+		private function onSidReceived(request:URLRequest, loader:URLLoader):void {
+			//Alert.show("session:" + loader.data);
+			var result:String = loader.data;
+			if (result.length > 0) {
+				DataPost.setSID(result);
+				trace("SID:" + result);
+				TextI18n.init();
+				currentState="accounts";
+				dispatchEvent(new Event(MANAGER_INIT));
+			}
+		}
+		
+		public function initManager():void {
+			
+			var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/index.php");
+			dataPost.onComplete = onSidReceived;
+			dataPost.doPost();
+		}
+		]]> 
+	</mx:Script>
 </mx:Module>
