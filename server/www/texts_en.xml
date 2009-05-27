@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<Texts>
+	<Text id='userName'>User</Text>
+	<Text id='userName'>User</Text>
+	<Text id='userPass'>Pass</Text>
+	<Text id='confirmPass'>Confirm Pass</Text>
+	<Text id='tree'>Tree</Text>
+	<Text id='climbInBtn'>Climb in</Text>
+	<Text id='registerBtn'>Register</Text>
+	<Text id='registerTxt'>Register</Text>
+	<Text id='logInBtn'>Log in</Text>
+	<Text id='logInTxt'>Login</Text>
+	<Text id='accountsTitle'>liPA Server</Text>
+	<Text id='accountsFooter'>Developed &amp; designed by 5&amp;CO</Text>
+	<Text id='badUser'>Bad user name: \"{0}\"</Text>
+	<Text id='shortPass'>Your password is too short</Text>
+	<Text id='userExist'>The user {0} already exists</Text>
+	<Text id='userNotExist'>User {0} doesn't exist</Text>
+	<Text id='regSuccessful'>Registration successful</Text>
+	<Text id='wrongPass'>Wrong pass</Text>
+</Texts>

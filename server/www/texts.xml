@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<Texts>
+	<Text id='userName'>Потребителско Име</Text>
+	<Text id='userPass'>Парола</Text>
+	<Text id='confirmPass'>Потвърди паролата</Text>
+	<Text id='tree'>Избери си дърво</Text>
+	<Text id='climbInBtn'>Качи се</Text>
+	<Text id='registerBtn'>Регистрация</Text>
+	<Text id='registerTxt'>Нов потребител</Text>
+	<Text id='logInBtn'>Вход</Text>
+	<Text id='logInTxt'>Вход</Text>
+	<Text id='accountsTitle'>liPA Server</Text>
+	<Text id='accountsFooter'>Дизайн: Никсъна</Text>
+	<Text id='badUser'>Лошо име: \"{0}\"</Text>
+	<Text id='shortPass'>Паролата Ви е прекалени кратка</Text>
+	<Text id='userExist'>Потребителят {0} вече съществува</Text>
+	<Text id='userNotExist'>Не съществува потребител {0}</Text>
+	<Text id='regSuccessful'>Регистрацията беше успешна</Text>
+	<Text id='wrongPass'>Грешна парола</Text>
+</Texts>

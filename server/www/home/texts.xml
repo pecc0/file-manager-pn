@@ -1,9 +1,0 @@
-﻿<?xml version="1.0"?>
-<Texts>
-	<Text id='badUser'>Лошо име: \"%s\"</Text>
-	<Text id='shortPass'>Паролата Ви е прекалени кратка</Text>
-	<Text id='userExist'>Потребителят %s вече съществува</Text>
-	<Text id='userNotExist'>Не съществува потребител %s</Text>
-	<Text id='regSuccessful'>Регистрацията беше успешна</Text>
-	<Text id='wrongPass'>Грешна парола</Text>
-</Texts>
