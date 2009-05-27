@@ -3,12 +3,14 @@
 	<mx:states>
 		<mx:State name="login">
 			<mx:SetEventHandler target="{button1}" name="click" handler="sendLoginData(idUser.text, idPass.text)"/>
+			<mx:SetProperty target="{formheading1}" name="label" value="{TextI18n.getInstance().getText('logInTxt')}"/>
 		</mx:State>
 		<mx:State name="register">
 			<mx:AddChild relativeTo="{formitem1}" position="before">
 				<mx:TextInput/>
 			</mx:AddChild>
 			<mx:SetEventHandler target="{button1}" name="click" handler="sendRegisterData()"/>
+			<mx:SetProperty target="{formheading1}" name="label" value="{TextI18n.getInstance().getText('registerTxt')}"/>
 		</mx:State>
 	</mx:states>
 	<mx:Style source="../res/general.css"/>
@@ -54,35 +56,35 @@
 	</mx:Script>
 	<mx:VBox  horizontalAlign="left" verticalAlign="top" verticalGap="5" borderStyle="outset">
 		<mx:Canvas width="100%" height="101" alpha="1.0" cornerRadius="0">
-			<mx:Label x="230.5" y="10" text="liPA Server" width="309" height="70" enabled="true" fontSize="50"/>
+			<mx:Label x="230.5" y="10" text="{TextI18n.getInstance().getText('accountsTitle')}" width="309" height="70" enabled="true" fontSize="50"/>
 		</mx:Canvas>
 		<mx:HBox width="100%" height="302" horizontalGap="5">
 			<mx:Canvas width="200" height="302">
-				<mx:Button x="82" y="250" label="Log in" width="108" height="28" click="currentState='login'"/>
+				<mx:Button x="82" y="250" label="{TextI18n.getInstance().getText('logInBtn')}" width="108" height="28" click="currentState='login'"/>
 			</mx:Canvas>
 			<mx:Form width="360" height="100%">
-				<mx:FormHeading label="Login/Register" width="322"/>
+				<mx:FormHeading label="{TextI18n.getInstance().getText('logInTxt')}" width="322" id="formheading1"/>
 				<mx:VBox width="318" height="90%" borderStyle="outset">
 					<mx:Spacer width="30" height="30"/>
-					<mx:FormItem label="User">
+					<mx:FormItem label="{TextI18n.getInstance().getText('userName')}">
 						<mx:TextInput id="idUser"/>
 					</mx:FormItem>
-					<mx:FormItem label="Pass">
+					<mx:FormItem label="{TextI18n.getInstance().getText('userPass')}">
 						<mx:TextInput id="idPass"/>
 					</mx:FormItem>
-					<mx:FormItem label="Tree" id="formitem1">
+					<mx:FormItem label="{TextI18n.getInstance().getText('tree')}" id="formitem1">
 						<mx:TextInput/>
 					</mx:FormItem>
 					<mx:Spacer width="30" height="30"/>
-					<mx:Button label="Climb in" id="button1"/>
+					<mx:Button label="{TextI18n.getInstance().getText('climbInBtn')}" id="button1"/>
 				</mx:VBox>
 			</mx:Form>
 			<mx:Canvas width="200" height="302">
-				<mx:Button x="10" y="249" label="Register" width="108" height="28" click="currentState='register'"/>
+				<mx:Button x="10" y="249" label="{TextI18n.getInstance().getText('registerBtn')}" width="108" height="28" click="currentState='register'"/>
 			</mx:Canvas>
 		</mx:HBox>
 		<mx:Canvas width="100%" height="87">
-			<mx:Label x="462" y="39" text="Developed &amp; designed by 5&amp;CO" width="298" height="38" fontSize="18"/>
+			<mx:Label x="462" y="39" text="{TextI18n.getInstance().getText('accountsFooter')}" width="298" height="38" fontSize="18"/>
 		</mx:Canvas>
 		
 	</mx:VBox>

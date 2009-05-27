@@ -1,5 +1,7 @@
 ﻿package  
 {
+	import mx.utils.URLUtil;
+	
 	
 	/**
 	 * ...
@@ -28,7 +30,7 @@
 		
 		private var loader:URLLoader;
 		
-		private static var serverUrl:String;
+		private static var serverUrl:String = null;
 		
 		private static var sessionId:String;
 		
@@ -53,6 +55,16 @@
 		{
 			if (url.charAt(0) == "/") {
 				url = serverUrl + url;
+			}
+			request.url = url;
+		}
+		
+		/**
+		 * Same as setUrl but changes the protocol to non-secure (http)
+		 */
+		public function setUrlNonSecure(url:String):void {
+			if (url.charAt(0) == "/") {
+				url = "http://" + URLUtil.getServerNameWithPort(serverUrl) + url;
 			}
 			request.url = url;
 		}
