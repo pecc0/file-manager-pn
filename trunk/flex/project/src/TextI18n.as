@@ -52,7 +52,7 @@ package
 		[Bindable("textI18nChanged")]
 		public function getText(textRichId:String):String {
 			//extract the text ID
-			var idRegExp:RegExp = /^[a-zA-Z]+/;
+			var idRegExp:RegExp = /^[a-zA-Z0-9]+/;
 			var textId:String = idRegExp.exec(textRichId)[0];
 		
 			if (texts != null) {
