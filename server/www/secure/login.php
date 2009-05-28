@@ -1,6 +1,12 @@
 <?php
 	//echo 'login -> $_REQUEST ';
 	//print_r($_REQUEST);
+	
+	include 'securedHeader.php';
+	
+	echo $_SERVER['HTTP_USER_AGENT'];
+	die;
+	
 	include 'loginCheck.php';
 	if (!file_exists($usersHome . '/' . $user)) 
 	{
@@ -20,10 +26,11 @@
 		die;
 	}
 	//session_start();
-	//include 'getIP.php';
-	//$_SESSION['REMOTE_IP'] = getip();
-	//$_SESSION['UNAME'] = $user;
+	include 'getIP.php';
+	$_SESSION['REMOTE_IP'] = getip();
+	$_SESSION['UNAME'] = $user;
 	echo "OK";
+	
 	//echo $_SESSION['REMOTE_IP'];
 
 	//realpath()
