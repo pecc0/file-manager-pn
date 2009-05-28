@@ -17,4 +17,6 @@
 	<Text id='userNotExist'>Не съществува потребител {0}</Text>
 	<Text id='regSuccessful'>Регистрацията беше успешна</Text>
 	<Text id='wrongPass'>Грешна парола</Text>
+	<Text id='fhUserName'>Потребител {0}</Text>
+	<Text id='fhLofOut'>Изход</Text>
 </Texts>
