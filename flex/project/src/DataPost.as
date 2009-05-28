@@ -56,11 +56,14 @@
 			if (url.charAt(0) == "/") {
 				url = serverUrl + url;
 			}
+			if (sessionId != null) {
+				url = url + "?" + sessionId;
+			}
 			request.url = url;
 		}
 		
 		/**
-		 * Same as setUrl but changes the protocol to non-secure (http)
+		 * setUrl for non-secure connection
 		 */
 		public function setUrlNonSecure(url:String):void {
 			if (url.charAt(0) == "/") {

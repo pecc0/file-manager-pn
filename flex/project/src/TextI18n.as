@@ -79,7 +79,7 @@ package
 					return text;
 				}
 			}
-			return textId;
+			return textRichId;
 		}
 		
 	}
