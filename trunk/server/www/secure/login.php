@@ -3,10 +3,7 @@
 	//print_r($_REQUEST);
 	
 	include 'securedHeader.php';
-	
-	echo $_SERVER['HTTP_USER_AGENT'];
-	die;
-	
+
 	include 'loginCheck.php';
 	if (!file_exists($usersHome . '/' . $user)) 
 	{
