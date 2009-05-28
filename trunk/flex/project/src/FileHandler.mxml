@@ -4,10 +4,59 @@
 	height="100%"
 	horizontalAlign="center" 
 	verticalAlign="middle"
+	creationComplete="initCollections();"
 	>
+	<mx:Script>
+        <![CDATA[
+
+            import mx.events.MenuEvent;
+            import mx.controls.Alert;
+            import mx.collections.*;
+
+            [Bindable]
+            public var menuBarCollection:XMLListCollection;
+    
+    		private var user:String = "{6te go polu4i ot syrvyra}";
+    		
+            private var menubarXML:XML = 
+                <r>
+                	<menuitem label="fhUserName">
+                        <menuitem label="fhLofOut" data="1A"/>
+                    </menuitem>
+                    <menuitem label="Menu1">
+                        <menuitem label="MenuItem 1-A" data="1A"/>
+                        <menuitem label="MenuItem 1-B" data="1B"/>
+                    </menuitem>
+                    <menuitem label="Menu2">
+                    </menuitem>
+                </r>;
+
+            // Event handler for the MenuBar control's itemClick event.
+            private function menuHandler(event:MenuEvent):void  {
+                Alert.show("Label: " + event.item.@label + "\n" + 
+                    "Data: " + event.item.@data, "Clicked menu item");
+            }
+			
+			private function labelFunc(item:Object):String {
+				return TextI18n.getInstance().getText(item.@label);
+			}
+			
+            // Event handler to initialize the MenuBar control.
+            private function initCollections():void {
+            	//add the user name as "id parameter"
+            	menubarXML.menuitem.(@label=="fhUserName").@label="fhUserName(" + user + ")";
+                menuBarCollection = new XMLListCollection(menubarXML.children());
+            }
+         ]]>
+    </mx:Script>
+
 	<mx:VBox width="100%" height="100%">
 		<mx:HBox width="100%" height="38">
-			<mx:MenuBar width="100%" height="100%"></mx:MenuBar>
+			<mx:MenuBar width="100%" height="100%" 
+				dataProvider="{menuBarCollection}"
+				labelFunction="labelFunc" 
+				itemClick="menuHandler(event);">
+			</mx:MenuBar>
 		</mx:HBox>
 		<mx:HBox width="100%" height="100%">
 			<mx:VBox width="173" height="100%">

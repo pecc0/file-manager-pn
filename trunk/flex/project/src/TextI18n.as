@@ -61,7 +61,7 @@ package
 					var text:String = nodes[0].text();
 					
 					//extract the parameters (they are enclosed in parenthesis)
-					var paramsRegExp:RegExp = /\([^\)]+\)/;
+					var paramsRegExp:RegExp = /\([^\)]*\)/;
 					var parametersResult:Object = paramsRegExp.exec(textRichId);
 					var parameters:Array = null;
 					if (parametersResult != null) {
