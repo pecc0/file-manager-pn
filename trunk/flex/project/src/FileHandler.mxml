@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="901" height="477">
-	<mx:VBox x="96.5" width="80%" height="90%" y="28">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	width="100%" 
+	height="100%"
+	horizontalAlign="center" 
+	verticalAlign="middle"
+	>
+	<mx:VBox width="100%" height="100%">
 		<mx:HBox width="100%" height="38">
 			<mx:MenuBar width="100%" height="100%"></mx:MenuBar>
 		</mx:HBox>
-		<mx:HBox width="100%" height="349">
+		<mx:HBox width="100%" height="100%">
 			<mx:VBox width="173" height="100%">
 				<mx:MenuBar width="172"></mx:MenuBar>
-				<mx:Tree width="173" height="321"></mx:Tree>
+				<mx:Tree width="173" height="100%"></mx:Tree>
 			</mx:VBox>
-			<mx:Tile width="539" height="349" borderStyle="solid">
+			<mx:Tile width="100%" height="100%" borderStyle="solid">
 			</mx:Tile>
 		</mx:HBox>
 		<mx:HBox width="100%" height="30">
