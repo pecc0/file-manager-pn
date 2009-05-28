@@ -18,7 +18,9 @@
 		<![CDATA[
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
-	
+			
+			public static const LOGIN_SUCCESSFUL:String="loginSuccessful";
+			
 			private function sendLoginData(aUser:String, aPass:String):void
 			{
 				var dataPost:DataPost = new DataPost(new URLVariables());
@@ -27,7 +29,13 @@
 				dataPost.getData().pass = aPass;
 				dataPost.onComplete = function(request:URLRequest, loader:URLLoader):void
 				{
-					Alert.show("url:" + request.url + "\r\nResult="+loader.data);
+					//Alert.show("url:" + request.url + "\r\nResult="+loader.data);
+					var result:String = loader.data;
+					if (result == "OK") {
+						dispatchEvent(new Event(LOGIN_SUCCESSFUL));
+					} else {
+						Alert.show(TextI18n.getInstance().getText(result));
+					}
 				}
 				dataPost.doPost();
 			}

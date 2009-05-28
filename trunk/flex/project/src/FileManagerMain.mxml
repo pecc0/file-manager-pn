@@ -15,8 +15,16 @@
 		</mx:State>
 		<mx:State name="accounts" id="accounts">
 			<mx:AddChild position="lastChild">
-				<ns1:AccountHandler id="accounthandler1">
+				<ns1:AccountHandler 
+					id="accounthandler1" 
+					creationComplete="accounthandler1.addEventListener(AccountHandler.LOGIN_SUCCESSFUL, onLoginSucceeded);">
 				</ns1:AccountHandler>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="fileManagement">
+			<mx:AddChild position="lastChild">
+				<ns1:FileHandler >
+				</ns1:FileHandler>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -44,6 +52,11 @@
 			dataPost.setUrl("/secure/index.php");
 			dataPost.onComplete = onSidReceived;
 			dataPost.doPost();
+			
+		}
+		
+		private function onLoginSucceeded(event:Event):void{
+			currentState = "fileManagement";
 		}
 		]]> 
 	</mx:Script>
