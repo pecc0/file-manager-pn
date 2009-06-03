@@ -7,6 +7,7 @@
 	>
 	<mx:Script>
 	<![CDATA[
+		import com.filemanagerpn.DialogFileSelectedEvent;
 		import com.filemanagerpn.SaveFileDialog;
 		import com.filemanagerpn.OpenSaveFileDialog;
 		import com.filemanagerpn.TextI18n;
@@ -30,12 +31,21 @@
                     <menuitem label="save" data="save"/>
                 </menuitem>
             </r>;
+        
+        
+        private function onSaveDlg(event:DialogFileSelectedEvent):void {
+        	//tova se izpylnqva kogato potrebitelq natisne "save"
+        	Alert.show("result:" + event.file);
+		}
+		
         // Event handler for the MenuBar control's itemClick event.
         private function menuHandler(event:MenuEvent):void  {
         	if (event.item.@data == "refresh") {
         		refreshNode(getSelectedDirectory(), true);
         	} else if (event.item.@data == "save") {
-        		SaveFileDialog.show(this);
+        		//tuk se syzdava noviq dialog
+        		var dlg:SaveFileDialog = SaveFileDialog.show(this);
+        		dlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onSaveDlg);
         	} else {
 	            Alert.show("Label: " + event.item.@label + "\n" + 
 	                "Data: " + event.item.@data, "Clicked menu item");

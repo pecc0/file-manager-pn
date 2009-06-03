@@ -1,5 +1,6 @@
 package com.filemanagerpn
 {
+	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
@@ -13,9 +14,10 @@ package com.filemanagerpn
 			
 		}
 		
-		public static function show(parent:UIComponent):void {
+		public static function show(parent:UIComponent):SaveFileDialog {
 			var dlg:SaveFileDialog = new SaveFileDialog();
 			OpenSaveFileDialog.show(parent, dlg);
+			return dlg;
 		}
 		protected override function init(event:FlexEvent):void
 		{
