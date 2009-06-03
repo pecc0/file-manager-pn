@@ -211,7 +211,7 @@
 			labelFunction="tileLabel"
 			dataProvider="{tileListData}"
 			id="tileList"
-			>
+			 fontSize="10" fontFamily="Arial" cornerRadius="0" borderStyle="solid" borderColor="#000000">
 		</mx:TileList>
 	</mx:HBox>
 </mx:Module>
