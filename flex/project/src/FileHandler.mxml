@@ -5,9 +5,10 @@
 	horizontalAlign="center" 
 	verticalAlign="middle"
 	creationComplete="initCollections();"
-	>
+	 xmlns:ns1="*">
 	<mx:Script>
         <![CDATA[
+        	import com.filemanagerpn.TextI18n;
 
             import mx.events.MenuEvent;
             import mx.controls.Alert;
@@ -58,14 +59,9 @@
 				itemClick="menuHandler(event);">
 			</mx:MenuBar>
 		</mx:HBox>
-		<mx:HBox width="100%" height="100%">
-			<mx:VBox width="173" height="100%">
-				<mx:MenuBar width="172"></mx:MenuBar>
-				<mx:Tree width="173" height="100%"></mx:Tree>
-			</mx:VBox>
-			<mx:Tile width="100%" height="100%" borderStyle="solid">
-			</mx:Tile>
-		</mx:HBox>
+		<ns1:DirListing width="100%" height="100%">
+		</ns1:DirListing>
+		
 		<mx:HBox width="100%" height="30">
 		</mx:HBox>
 	</mx:VBox>

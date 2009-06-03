@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="550" horizontalAlign="center" verticalAlign="bottom" borderStyle="outset" styleName="appAccount" currentState="login">
-	<mx:states>
-		<mx:State name="login">
+	<mx:states> 
+		<mx:State name="login"> 
 			<mx:SetEventHandler target="{button1}" name="click" handler="sendLoginData(idUser.text, idPass.text)"/>
 			<mx:SetProperty target="{formheading1}" name="label" value="{TextI18n.getInstance().getText('logInTxt')}"/>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="register">
 			<mx:AddChild relativeTo="{formitem1}" position="before">
@@ -16,6 +18,9 @@
 	<mx:Style source="../res/general.css"/>
 	<mx:Script>
 		<![CDATA[
+			import com.filemanagerpn.OpenSaveFileDialog;
+			import com.filemanagerpn.TextI18n;
+			import com.filemanagerpn.DataPost;
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
 			
@@ -76,7 +81,7 @@
 			</mx:Canvas>
 			<mx:Form width="360" height="100%">
 				<mx:FormHeading label="{TextI18n.getInstance().getText('logInTxt')}" width="322" id="formheading1"/>
-				<mx:VBox width="318" height="90%" borderStyle="outset">
+				<mx:VBox width="318" height="90%" borderStyle="outset" id="vbox1">
 					<mx:Spacer width="30" height="30"/>
 					<mx:FormItem label="{TextI18n.getInstance().getText('userName')}">
 						<mx:TextInput id="idUser"/>

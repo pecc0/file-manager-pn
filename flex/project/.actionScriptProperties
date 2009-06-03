@@ -12,10 +12,12 @@
 <application path="FileManagerApplication.mxml"/>
 </applications>
 <modules>
-<module application="src/FileManagerApplication.mxml" destPath="AccountHandler.swf" optimize="true" sourcePath="src/AccountHandler.mxml"/>
-<module application="src/FileManagerApplication.mxml" destPath="FileManagerMain.swf" optimize="true" sourcePath="src/FileManagerMain.mxml"/>
 <module application="src/FileManagerApplication.mxml" destPath="PaintHandler.swf" optimize="true" sourcePath="src/PaintHandler.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="FileManagerMain.swf" optimize="true" sourcePath="src/FileManagerMain.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="AccountHandler.swf" optimize="true" sourcePath="src/AccountHandler.mxml"/>
 <module application="src/FileManagerApplication.mxml" destPath="FileHandler.swf" optimize="true" sourcePath="src/FileHandler.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="OpenSaveDialogModule.swf" optimize="true" sourcePath="src/OpenSaveDialogModule.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="DirListing.swf" optimize="true" sourcePath="src/DirListing.mxml"/>
 </modules>
 <buildCSSFiles/>
 </actionScriptProperties>
