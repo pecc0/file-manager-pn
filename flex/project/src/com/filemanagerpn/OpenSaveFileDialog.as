@@ -14,6 +14,8 @@ package com.filemanagerpn
 		
 		protected var fileName:String = null;
 		
+		public static const FILESELECTED:String="fileSelected";
+		
 		public function OpenSaveFileDialog()
 		{
 			super();
@@ -39,6 +41,9 @@ package com.filemanagerpn
 		private function onOk(event:MouseEvent):void {
 			fileName = DirListing.getPathToNode( view.listing.getSelectedDirectory()) + view.fileName.text;
 			titleWindow_close(null);
+			var e:DialogFileSelectedEvent = new DialogFileSelectedEvent(FILESELECTED);
+			e.file = fileName;
+			dispatchEvent(e);
 		}
 		
 		private function titleWindow_close(evt:CloseEvent):void {
