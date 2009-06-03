@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" xmlns:ns1="*">
+	<mx:VBox width="100%" height="100%">
+		<ns1:DirListing id="listing">
+		</ns1:DirListing>
+		<mx:HBox width="100%" 
+			height="26" 
+			verticalAlign="middle">
+			<mx:TextInput width="100%" 
+				text="{listing.tileList.selectedItem.@name}"
+				id="fileName"
+				/>
+			<mx:Button label="Button" id="btnOk"/>
+		</mx:HBox>
+		
+	</mx:VBox>
+</mx:Module>

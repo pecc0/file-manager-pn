@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	width="100%"
+	height="100%"
+	creationComplete="initCollections();"
+	
+	>
+	<mx:Script>
+	<![CDATA[
+		import com.filemanagerpn.SaveFileDialog;
+		import com.filemanagerpn.OpenSaveFileDialog;
+		import com.filemanagerpn.TextI18n;
+		import com.filemanagerpn.DataPost;
+		import com.filemanagerpn.DirectoryEvent;
+		import mx.events.TreeEvent;
+		import mx.collections.XMLListCollection;
+		import mx.controls.Alert;
+		import mx.events.MenuEvent;
+		
+		public static const SELECTED_NODE_CHANGED:String="selectedNodeChanged";
+		
+		[Bindable]
+        public var menuBarCollection:XMLListCollection;
+        
+		private var menubarXML:XML = 
+            <r>
+            	<menuitem label="dlFile">
+                    <menuitem label="dlNewDirectory" data="ndir"/>
+                    <menuitem label="dlRefresh" data="refresh"/>
+                    <menuitem label="save" data="save"/>
+                </menuitem>
+            </r>;
+        // Event handler for the MenuBar control's itemClick event.
+        private function menuHandler(event:MenuEvent):void  {
+        	if (event.item.@data == "refresh") {
+        		refreshNode(getSelectedDirectory(), true);
+        	} else if (event.item.@data == "save") {
+        		SaveFileDialog.show(this);
+        	} else {
+	            Alert.show("Label: " + event.item.@label + "\n" + 
+	                "Data: " + event.item.@data, "Clicked menu item");
+			}
+        }
+		
+		private function menuLabel(item:Object):String {
+			return TextI18n.getInstance().getText(item.@label);
+		}
+		
+        // Event handler to initialize the MenuBar control.
+        private function initCollections():void {
+            menuBarCollection = new XMLListCollection(menubarXML.children());
+        }
+        
+        [Bindable]
+        private var dirlist:XMLList =
+          <>
+            <dir name="/" isBranch="true">
+            	<file name="loading..."/>
+            </dir>                              
+          </>;
+        
+        [Bindable]
+        private var dirListData:XMLListCollection = new XMLListCollection(dirlist);
+        
+        [Bindable]
+        private var tileListData:XMLListCollection;
+     
+        private function onDirTreeChanged(event:Event):void {
+        	var newEvent:DirectoryEvent = new DirectoryEvent(SELECTED_NODE_CHANGED);
+        	newEvent.directory = getSelectedDirectory();
+        	refreshNode(newEvent.directory, false);
+        	dispatchEvent(newEvent);
+        	tileListData = new XMLListCollection(getSelectedDirectory().*);
+        	
+        }
+        
+        public function getSelectedDirectory():XML {
+        	var result:XML = null;
+        	if (directoryTree != null) {
+        		result = XML(directoryTree.selectedItem);
+        	}
+        	if (result == null) {
+        		result = dirlist[0];
+        	}
+        	if (result.localName() == "file") {
+        		result = result.parent();
+        	}
+        	return result; 
+        }
+        
+        private function refreshNode(node:XML, force:Boolean):void {
+        	
+        	if (force) {
+        		delete node.*;
+        		var loadingNode:XML = <file name="loading..."/>;
+        		node.appendChild(loadingNode);
+        	}
+        	if (node.file.@name == "loading...") {
+				//Alert.show();
+				var dataPost:DataPost = new DataPost(new URLVariables());
+				dataPost.setUrl("/secure/changedir.php");
+				dataPost.getData().dir = getPathToNode(node);
+				//Alert.show(getNodeFromPath(dirlist[0], dataPost.getData().dir).toString());
+				dataPost.onComplete = onListingReceived;
+				dataPost.doPost();
+			}
+        }
+        
+		private function treeLabel(item:Object):String
+		{
+			var node:XML = XML(item);
+			return node.@name;
+		}
+		
+		private function tileLabel(item:Object):String {
+			var node:XML = XML(item);
+			return node.@name;
+		}
+		
+		public static function getPathToNode(node:XML):String {
+			if (node.parent() == undefined) {
+				return node.@name;
+			} else {
+				return getPathToNode(node.parent()) + node.@name + "/";
+			}
+		}
+		
+		public function getNodeFromPath(root:XML, path:String):XML {
+			if (path == null || path.length == 0) {
+				return root;
+			}
+			if (path.charAt(0) == "/") {
+				return getNodeFromPath(dirlist[0], path.substring(1));
+			}
+			var slashIndex:int = path.indexOf("/");
+			var part1:String = path.substring(0, slashIndex);
+			var part2:String = path.substring(slashIndex + 1);
+			var child:XML = (root.dir.(@name == part1))[0];
+			if (part2 == null || part2.length == 0) {
+				return child;
+			}
+			return getNodeFromPath(child, part2);
+		}
+		
+		private function onListingReceived(request:URLRequest, loader:URLLoader):void {
+			var strResult:String = loader.data;
+			if (strResult.substr(0, 6) == "error:") {
+				Alert.show(TextI18n.getInstance().getText(strResult.substr(6)));
+				return;
+			}
+			XML.ignoreProcessingInstructions = true;
+			XML.ignoreWhitespace = true;
+			//trace(loader.data);
+			var result:XML = new XML(strResult);
+			
+			var directory:XML = getNodeFromPath(null, request.data.dir);
+			
+			delete directory.*;
+			
+			//trace(directory);
+			var subdirs:XMLList = result.dir;
+			for each (var sd:XML in subdirs) {
+				directory.appendChild(sd);
+			}
+			
+			var fileslist:XMLList = result.file;
+			for each (var f:XML in fileslist) {
+				directory.appendChild(f);
+			}
+			
+			tileListData = new XMLListCollection(getSelectedDirectory().*);
+		}
+		
+		private function treeItemOpening(event:TreeEvent):void {
+			//Alert.show(event.item.toString());
+			if (event.opening) {
+				refreshNode(XML(event.item), false);
+			}
+		} 
+		
+    ]]>
+    </mx:Script>
+	<mx:HBox width="100%" height="100%">
+		<mx:VBox width="173" height="100%">
+			<mx:MenuBar width="100%"
+				dataProvider="{menuBarCollection}"
+				labelFunction="menuLabel" 
+				itemClick="menuHandler(event);"
+				></mx:MenuBar>
+			<mx:Tree width="100%" height="100%"
+				dataProvider="{dirListData}"
+        		labelFunction="treeLabel"
+        		itemOpening="treeItemOpening(event);"
+        		id="directoryTree"
+        		change="onDirTreeChanged(event);"
+        		valueCommit="onDirTreeChanged(event);"
+				>
+				</mx:Tree>
+		</mx:VBox>
+		<mx:TileList width="100%" height="100%" 
+			labelFunction="tileLabel"
+			dataProvider="{tileListData}"
+			id="tileList"
+			>
+		</mx:TileList>
+	</mx:HBox>
+</mx:Module>
