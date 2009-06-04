@@ -19,4 +19,5 @@
 	<Text id='wrongPass'>Грешна парола</Text>
 	<Text id='fhUserName'>Потребител {0}</Text>
 	<Text id='fhLofOut'>Изход</Text>
+	<Text id='fileNotFound'>Файлът '{0}' не беше намерен</Text>
 </Texts>
