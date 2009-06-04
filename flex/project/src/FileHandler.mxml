@@ -8,6 +8,7 @@
 	 xmlns:ns1="*">
 	<mx:Script>
         <![CDATA[
+        	import com.filemanagerpn.DirectoryEvent;
         	import com.filemanagerpn.TextI18n;
 
             import mx.events.MenuEvent;
@@ -17,8 +18,6 @@
             [Bindable]
             public var menuBarCollection:XMLListCollection;
     
-    		private var user:String = "{6te go polu4i ot syrvyra}";
-    		
             private var menubarXML:XML = 
                 <r>
                 	<menuitem label="fhUserName">
@@ -42,10 +41,17 @@
 				return TextI18n.getInstance().getText(item.@label);
 			}
 			
+			private function onListingReceived(event:DirectoryEvent):void {
+				menubarXML.menuitem.(@label=="fhUserName").@label="fhUserName(" + event.userName + ")";
+				dirListing.removeEventListener(DirListing.LISTING_RECEIVED, onListingReceived);
+			}
+			
             // Event handler to initialize the MenuBar control.
             private function initCollections():void {
             	//add the user name as "id parameter"
-            	menubarXML.menuitem.(@label=="fhUserName").@label="fhUserName(" + user + ")";
+            	
+            	dirListing.addEventListener(DirListing.LISTING_RECEIVED, onListingReceived);
+            	dirListing.openFile("/");
                 menuBarCollection = new XMLListCollection(menubarXML.children());
             }
          ]]>
@@ -59,10 +65,7 @@
 				itemClick="menuHandler(event);">
 			</mx:MenuBar>
 		</mx:HBox>
-		<ns1:DirListing width="100%" height="100%">
+		<ns1:DirListing width="100%" height="100%" id="dirListing">
 		</ns1:DirListing>
-		
-		<mx:HBox width="100%" height="30">
-		</mx:HBox>
 	</mx:VBox>
 </mx:Module>
