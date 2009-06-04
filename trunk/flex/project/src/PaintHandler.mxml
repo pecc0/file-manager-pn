@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module id="canvas_board" width="200" height="200" xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init(event)">
-	<mx:Script source="com/filemanagerpn/PaintCanvas.as"></mx:Script>
-	<mx:Canvas x="0" y="0" width="200" height="200" backgroundColor="0x00ffff" >
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" borderColor="#080909">
+
+	<mx:Script source="PaintCanvas.as"></mx:Script>
+	<mx:Canvas 	id="canvas_board" 	x="10" 	y="10" 
+				width="532" 	height="287"  
+				borderStyle="solid" 	borderColor="#141617"
+				creationComplete="init(event)" >
     </mx:Canvas>
-</mx:Module>
+    
+	<mx:Button x="460" y="305" label="Download" click="bitComSaveJPG()"/>
+	<mx:Button x="10" y="305" label="Save" click="saveJPG()"/>
+	<mx:Button x="72" y="305" label="Save as" click="saveJPG()"/>
+	
+</mx:Application>
