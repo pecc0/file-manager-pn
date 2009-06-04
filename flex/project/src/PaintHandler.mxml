@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" borderColor="#080909">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" borderColor="#080909">
 
 	<mx:Script source="PaintCanvas.as"></mx:Script>
 	<mx:Canvas 	id="canvas_board" 	x="10" 	y="10" 
@@ -12,4 +12,4 @@
 	<mx:Button x="10" y="305" label="Save" click="saveJPG()"/>
 	<mx:Button x="72" y="305" label="Save as" click="saveJPG()"/>
 	
-</mx:Application>
+</mx:Module>
