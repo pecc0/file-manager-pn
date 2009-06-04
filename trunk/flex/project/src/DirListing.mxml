@@ -19,6 +19,7 @@
 		import mx.events.MenuEvent;
 		
 		public static const SELECTED_NODE_CHANGED:String="selectedNodeChanged";
+		public static const LISTING_RECEIVED:String="listingReceived";
 		
 		[Bindable]
         public var menuBarCollection:XMLListCollection;
@@ -75,13 +76,47 @@
         [Bindable]
         private var tileListData:XMLListCollection;
      
+     
+     	/**
+     	 * Opens the file specified by the path parameter. 
+     	 * If the path leads to directory, opens the corresponding dir in the dir tree;
+     	 * if the path leads to file, opens the dir containing the file 
+     	 * and selects the file in the right panel;
+     	 * if the file doesn't exist, shows error alert.
+     	 * @param path Path to the file
+     	 * 
+     	 */ 
+		public function openFile(path:String):void {
+			//trace(getNodeFromPath(getSelectedDirectory(), path, false));
+			if (path.charAt(0) != "/") {
+				path = getPathToNode(getSelectedDirectory()) + path;
+			}
+			addEventListener(LISTING_RECEIVED, fileOpened);
+			postListingRequest(path);
+		}
+		
+		private function expandBranch(node:XML):void {
+			if (node.parent() != undefined) {
+				expandBranch(node.parent());
+			}
+			directoryTree.expandItem(node, true);
+		}
+		
+		private function fileOpened(event:DirectoryEvent):void {
+			removeEventListener(LISTING_RECEIVED, fileOpened);
+			expandBranch(event.directory);
+			directoryTree.selectedItem = event.directory;
+			if (event.selectedFile != null && event.selectedFile.length > 0) {
+				tileList.selectedItem = tileListData.source.*.(@name==event.selectedFile);
+			}
+		}
+		
         private function onDirTreeChanged(event:Event):void {
         	var newEvent:DirectoryEvent = new DirectoryEvent(SELECTED_NODE_CHANGED);
         	newEvent.directory = getSelectedDirectory();
         	refreshNode(newEvent.directory, false);
         	dispatchEvent(newEvent);
         	tileListData = new XMLListCollection(getSelectedDirectory().*);
-        	
         }
         
         public function getSelectedDirectory():XML {
@@ -107,12 +142,7 @@
         	}
         	if (node.file.@name == "loading...") {
 				//Alert.show();
-				var dataPost:DataPost = new DataPost(new URLVariables());
-				dataPost.setUrl("/secure/changedir.php");
-				dataPost.getData().dir = getPathToNode(node);
-				//Alert.show(getNodeFromPath(dirlist[0], dataPost.getData().dir).toString());
-				dataPost.onComplete = onListingReceived;
-				dataPost.doPost();
+				postListingRequest(getPathToNode(node));
 			}
         }
         
@@ -135,21 +165,55 @@
 			}
 		}
 		
-		public function getNodeFromPath(root:XML, path:String):XML {
+		public function getNodeFromPath(root:XML, path:String, forceCreation:Boolean):XML {
 			if (path == null || path.length == 0) {
 				return root;
 			}
 			if (path.charAt(0) == "/") {
-				return getNodeFromPath(dirlist[0], path.substring(1));
+				return getNodeFromPath(dirlist[0], path.substring(1), forceCreation);
 			}
 			var slashIndex:int = path.indexOf("/");
-			var part1:String = path.substring(0, slashIndex);
-			var part2:String = path.substring(slashIndex + 1);
-			var child:XML = (root.dir.(@name == part1))[0];
+			var part1:String;
+			var part2:String;
+			if (slashIndex > 0){
+				part1 = path.substring(0, slashIndex);
+				part2 = path.substring(slashIndex + 1);
+			} else {
+				part1 = path;
+			}
+			var child:XML;
+			var children:XMLList = root.dir.(@name == part1);
+			if (children.length() == 0) {
+				if (forceCreation) {
+					var newNode:XML =
+					<dir name="" isBranch="true">
+		            	<file name="loading..."/>
+		            </dir> 
+		            newNode.@name = part1;
+		            root.appendChild(newNode);
+		            child = newNode;
+				} else {
+					return root;
+				}
+			} else {
+				child = children[0];
+			}
+			
 			if (part2 == null || part2.length == 0) {
 				return child;
 			}
-			return getNodeFromPath(child, part2);
+			return getNodeFromPath(child, part2, forceCreation);
+		}
+		
+		
+		
+		private function postListingRequest(path:String):void {
+			var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/changedir.php");
+			dataPost.getData().dir = path;
+			//Alert.show(getNodeFromPath(dirlist[0], dataPost.getData().dir).toString());
+			dataPost.onComplete = onListingReceived;
+			dataPost.doPost();
 		}
 		
 		private function onListingReceived(request:URLRequest, loader:URLLoader):void {
@@ -160,14 +224,13 @@
 			}
 			XML.ignoreProcessingInstructions = true;
 			XML.ignoreWhitespace = true;
-			//trace(loader.data);
+			
 			var result:XML = new XML(strResult);
 			
-			var directory:XML = getNodeFromPath(null, request.data.dir);
+			var directory:XML = getNodeFromPath(null, result.@listingfor, true);
 			
 			delete directory.*;
 			
-			//trace(directory);
 			var subdirs:XMLList = result.dir;
 			for each (var sd:XML in subdirs) {
 				directory.appendChild(sd);
@@ -179,6 +242,13 @@
 			}
 			
 			tileListData = new XMLListCollection(getSelectedDirectory().*);
+			
+			var newEvent:DirectoryEvent = new DirectoryEvent(LISTING_RECEIVED);
+        	newEvent.directory = directory;
+        	newEvent.selectedFile = result.@selected;
+        	newEvent.userName = result.@username;
+        	dispatchEvent(newEvent);
+        	
 		}
 		
 		private function treeItemOpening(event:TreeEvent):void {
@@ -211,6 +281,8 @@
 			labelFunction="tileLabel"
 			dataProvider="{tileListData}"
 			id="tileList"
+			rowHeight="50"
+			columnWidth="75"
 			 fontSize="10" fontFamily="Arial" cornerRadius="0" borderStyle="solid" borderColor="#000000">
 		</mx:TileList>
 	</mx:HBox>

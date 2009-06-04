@@ -2,7 +2,7 @@
 <mx:Application 
 	xmlns:mx="http://www.adobe.com/2006/mxml" 
 	xmlns:ns1="*"
-	applicationComplete="init()" height="611">
+	applicationComplete="init()">
 	<mx:Script>
         <![CDATA[
         	import com.filemanagerpn.DataPost;
