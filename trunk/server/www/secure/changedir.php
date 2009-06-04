@@ -7,13 +7,24 @@ if ($user == '') {
 	die;
 }
 
-$path = realpath($usersHome . '/' . $user . '/' . $_POST["dir"]);
+$requestDir = $_POST["dir"];
+
+$path = realpath($usersHome . '/' . $user . '/' . $requestDir);
+if ($path == "") {
+	echo "error:" . "fileNotFound(" . urlencode($requestDir) . ")";
+	die;
+}
 $userPath = realpath($usersHome . '/' . $user);
 if (substr_compare($userPath, $path, 0, strlen($userPath)) != 0) {
 	echo "error:" . $userPath . "!=" . $path;
 	die;
 }
 
+if (!is_dir($path)) {
+	$selectedFile = basename($path);
+	$path = dirname($path);
+	$requestDir = dirname($requestDir);
+}
 chdir($path);
 
 include 'xmlUtils.php';
@@ -24,7 +35,9 @@ $doc->formatOutput = true;
 
 $root = $doc->createElement("DirListing");
 $root = $doc->appendChild($root);
-addAttribute($doc, $root, 'username1', $user);
+addAttribute($doc, $root, 'username', $user);
+addAttribute($doc, $root, 'listingfor', $requestDir);
+addAttribute($doc, $root, 'selected', $selectedFile);
 
 $dirs = array_diff( scandir( $path ), Array( ".", ".." ) );
 
