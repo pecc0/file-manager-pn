@@ -5,7 +5,7 @@
  *by Nikolay 
  */
  
-import flash.events.*;
+import flash.events.*; 
  
 private function drawOnCanvas() : void { 
 	import com.adobe.images.JPGEncoder;
