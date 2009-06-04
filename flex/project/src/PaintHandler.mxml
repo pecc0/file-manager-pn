@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-	<mx:Script source="as/paint.as"></mx:Script>
 	<mx:Canvas id="sketch_mc" x="0" y="0" width="100%" height="100%" backgroundColor="#ffffff">
     </mx:Canvas>
 
