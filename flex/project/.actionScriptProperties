@@ -18,6 +18,7 @@
 <module application="src/FileManagerApplication.mxml" destPath="FileHandler.swf" optimize="true" sourcePath="src/FileHandler.mxml"/>
 <module application="src/FileManagerApplication.mxml" destPath="OpenSaveDialogModule.swf" optimize="true" sourcePath="src/OpenSaveDialogModule.mxml"/>
 <module application="src/FileManagerApplication.mxml" destPath="DirListing.swf" optimize="true" sourcePath="src/DirListing.mxml"/>
+<module application="src/FileManagerApplication.mxml" destPath="PaintHandler.swf" optimize="true" sourcePath="src/PaintHandler.mxml"/>
 </modules>
 <buildCSSFiles/>
 </actionScriptProperties>
