@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" borderColor="#080909">
 
-	<mx:Script source="PaintCanvas.as"></mx:Script>
+	<mx:Script source="com/filemanagerpn/PaintCanvas.as"></mx:Script>
 	<mx:Canvas 	id="canvas_board" 	x="10" 	y="10" 
 				width="532" 	height="287"  
 				borderStyle="solid" 	borderColor="#141617"

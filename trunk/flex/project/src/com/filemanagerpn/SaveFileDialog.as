@@ -1,6 +1,5 @@
 package com.filemanagerpn
 {
-	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
@@ -23,6 +22,9 @@ package com.filemanagerpn
 		{
 			super.init(event);
 			view.btnOk.label = "Save";
+		}
+		protected override function checkFile(event:DirectoryEvent):Boolean{
+			return true;
 		}
 		
 	}
