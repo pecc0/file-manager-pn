@@ -16,7 +16,7 @@ package com.filemanagerpn
 		
 		public static const FILESELECTED:String="fileSelected";
 		
-		public function OpenSaveFileDialog()
+		public function OpenSaveFileDialog(enableMenu:Boolean = true)
 		{
 			super();
 			view = new OpenSaveDialogModule();
@@ -38,12 +38,17 @@ package com.filemanagerpn
 			view.btnOk.addEventListener(MouseEvent.CLICK, onOk);
 		}
 		
+		protected function checkFile(event:DirectoryEvent):Boolean {
+			return true;
+		}
+		
 		private function onFileOpen(event:DirectoryEvent):void {
 			view.listing.removeEventListener(DirListing.LISTING_RECEIVED, onFileOpen);
-			if (event.selectedFile != null && event.selectedFile.length > 0) {
+			if (event.selectedFile != null && event.selectedFile.length > 0 && checkFile(event)) {
 				fileName = DirListing.getPathToNode( event.directory) + event.selectedFile;
 				titleWindow_close(null);
 				var e:DialogFileSelectedEvent = new DialogFileSelectedEvent(FILESELECTED);
+				e.direvent = event;
 				e.file = fileName;
 				dispatchEvent(e);
 			} else {
@@ -59,6 +64,14 @@ package com.filemanagerpn
 		private function titleWindow_close(evt:CloseEvent):void {
             PopUpManager.removePopUp(this);
         }
-
+		
+		public function setFile(path:String):void {
+			view.listing.openFile(path);
+		}
+		public function setMenu(enabled:Boolean):void {
+			
+			view.listing.menuBar.visible = enabled;
+			
+		}
 	}
 }

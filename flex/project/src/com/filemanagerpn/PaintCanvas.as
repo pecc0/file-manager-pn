@@ -57,7 +57,7 @@ private function bitComSaveJPG() : void {
 	navigateToURL(jpgURLRequest, "_blank");
 }
 
-private function saveJPG() {
+private function saveJPG():void {
 //	var dlg:SaveFileDialog = SaveFileDialog.show(this);
 //    dlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onSaveDlg);
 }

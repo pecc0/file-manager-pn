@@ -5,6 +5,7 @@ package com.filemanagerpn
 	public class DialogFileSelectedEvent extends Event
 	{
 		public var file:String;
+		public var direvent:DirectoryEvent;
 		public function DialogFileSelectedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
