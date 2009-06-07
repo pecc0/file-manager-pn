@@ -4,7 +4,7 @@ include 'securedHeader.php';
 function checkPath() {
 	include 'constants.php';
 	
-	global $user, $path, $requestDir, $selectedFile;
+	global $user, $path, $requestDir, $selectedFile, $userPath;
 	
 	$user = $_SESSION['UNAME'];
 

@@ -31,7 +31,7 @@ package com.filemanagerpn
 		
 		protected static function show(parent:UIComponent, dlg:TitleWindow):void {
 			PopUpManager.addPopUp(dlg, parent, true);
-            PopUpManager.centerPopUp(parent);
+            PopUpManager.centerPopUp(dlg);
 		}
 		
 		protected function init(event:FlexEvent):void

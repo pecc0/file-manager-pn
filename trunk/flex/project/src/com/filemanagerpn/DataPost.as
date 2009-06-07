@@ -91,6 +91,7 @@
 			 
 			 function xmlLoaded(event:Event):void
 			 {
+				trace("Request returned: \n" + loader.data);
 				//Alert.show("url:" + request.url + "\r\nResult="+loader.data);
 				if (onComplete != null) 
 				{
