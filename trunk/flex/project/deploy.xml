@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project name="deploy" default="deploy" basedir=".">
-     <property name="serverRoot" value="C:/workspace/flexFileManager/server/www"/>
+     <property name="serverRoot" value="C:/Documents and Settings/PetkoLtd/My Documents/Flex Builder 3/fm_server/www"/>
 
      <target name="deploy" >
-     	<copy todir="${serverRoot}/secure/flex" includeEmptyDirs="no" >
+     	<copy todir="${serverRoot}/secure/flex" includeEmptyDirs="no" overwrite="yes">
 			<fileset dir="bin-debug">
 				<include name="*" />
 			</fileset>

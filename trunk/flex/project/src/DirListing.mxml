@@ -7,6 +7,7 @@
 	>
 	<mx:Script>
 	<![CDATA[
+		import mx.events.CloseEvent;
 		import com.filemanagerpn.DialogFileSelectedEvent;
 		import com.filemanagerpn.SaveFileDialog;
 		import com.filemanagerpn.OpenSaveFileDialog;
@@ -55,6 +56,21 @@
         	removeEventListener(OpenSaveFileDialog.FILESELECTED, onNewDir);
 		}
 		
+		private function removeSelectedFiles(event:CloseEvent):void {
+			var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/fscommand.php");
+			dataPost.getData().dir = DirListing.getPathToNode(getSelectedDirectory());
+			dataPost.getData().command = "delete"
+			trace("deleting " + files);
+			var files:String = "";
+			for each (var f:XML in tileList.selectedItems) {
+				files += f.@name + ";"; 
+			}
+			dataPost.getData().parameter = files;
+			dataPost.onComplete = onListingReceived;
+			dataPost.doPost();
+		}
+		
         // Event handler for the MenuBar control's itemClick event.
         private function menuHandler(event:MenuEvent):void  {
         	if (event.item.@data == "refresh") {
@@ -69,7 +85,14 @@
         		newDirDlg.setMenu(false);
         		newDirDlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onNewDir);
         	} else if (event.item.@data == "rm"){
-        		
+        		var files:String = "";
+				for each (var f:XML in tileList.selectedItems) {
+					files += "\"" + f.@name + "\" "; 
+				}
+				if (files.length > 0) {
+	        		Alert.show("Delete " + files + "?", "Delete?", 4, null, 
+	        			removeSelectedFiles, null, Alert.YES | Alert.NO);
+    			}
         	} else {
 	            Alert.show("Label: " + event.item.@label + "\n" + 
 	                "Data: " + event.item.@data, "Clicked menu item");
@@ -227,8 +250,6 @@
 			return getNodeFromPath(child, part2, forceCreation);
 		}
 		
-		
-		
 		private function postListingRequest(path:String):void {
 			var dataPost:DataPost = new DataPost(new URLVariables());
 			dataPost.setUrl("/secure/listdir.php");
@@ -306,6 +327,7 @@
 			id="tileList"
 			rowHeight="50"
 			columnWidth="75"
+			allowMultipleSelection="true" 
 			 fontSize="10" fontFamily="Arial" cornerRadius="0" borderStyle="solid" borderColor="#000000">
 		</mx:TileList>
 	</mx:HBox>
