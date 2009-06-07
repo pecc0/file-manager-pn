@@ -26,6 +26,7 @@ package com.filemanagerpn
 
 			addEventListener(CloseEvent.CLOSE, titleWindow_close);
 			addChild(view);
+			view.listing.tileList.allowMultipleSelection = false;
 		}
 		
 		protected static function show(parent:UIComponent, dlg:TitleWindow):void {
