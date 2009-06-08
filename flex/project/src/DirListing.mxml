@@ -7,6 +7,7 @@
 	>
 	<mx:Script>
 	<![CDATA[
+		import com.filemanagerpn.SelectDestinationDialog;
 		import com.filemanagerpn.SelectDirectoryDialog;
 		import mx.events.CloseEvent;
 		import com.filemanagerpn.DialogFileSelectedEvent;
@@ -33,6 +34,7 @@
                     <menuitem label="dlNewDirectory" data="ndir"/>
                     <menuitem label="dlRemove" data="rm"/>
                     <menuitem label="dlCopy" data="copy"/>
+                    <menuitem label="dlMove" data="move"/>
                 </menuitem>
             </r>;
         
@@ -71,20 +73,39 @@
 			dataPost.doPost();
 		}
 		
-		private function onCopy(event:DialogFileSelectedEvent):void {
+		private function createCopyMovePost():DataPost {
 			var dataPost:DataPost = new DataPost(new URLVariables());
 			dataPost.setUrl("/secure/fscommand.php");
 			var files:String = "";
 			for each (var f:XML in tileList.selectedItems) {
 				files += f.@name + ";"; 
 			}
-			
 			dataPost.getData().dir = DirListing.getPathToNode(getSelectedDirectory());
-			dataPost.getData().command = "copy"
 			dataPost.getData().files = files;
-			dataPost.getData().destDir = event.file;
-			trace("copying " + files + " from " + dataPost.getData().dir + " to " + dataPost.getData().destDir);
+			
 			dataPost.onComplete = onListingReceived;
+			return dataPost; 
+		}
+		
+		private function onCopy(event:DialogFileSelectedEvent):void {
+			var dataPost:DataPost = createCopyMovePost();
+			dataPost.getData().command = "copy";
+			dataPost.getData().destDir = event.file;
+			trace("copying " + dataPost.getData().files + " from " + dataPost.getData().dir + " to " + dataPost.getData().destDir);
+			dataPost.doPost();
+		}
+		
+		private function onMove(event:DialogFileSelectedEvent):void {
+			var dataPost:DataPost = event.target.parameter;
+			dataPost.getData().command = "move";
+			dataPost.getData().dest = event.file;
+			if (tileList.selectedItems.length == 1) {
+				dataPost.getData().destDir = DirListing.getPathToNode(event.direvent.directory);
+			} else {
+				dataPost.getData().destDir = event.file; 
+			}
+			trace("moving " + dataPost.getData().files + " from " + dataPost.getData().dir + 
+				" to " + dataPost.getData().destDir + ";" + dataPost.getData().dest);
 			dataPost.doPost();
 		}
 		
@@ -111,10 +132,31 @@
 	        			removeSelectedFiles, null, Alert.YES | Alert.NO);
     			}
     		} else if (event.item.@data == "copy"){
-    			var selectDirDlg:SelectDirectoryDialog = SelectDirectoryDialog.show(this);
-    			selectDirDlg.setFile(DirListing.getPathToNode(getSelectedDirectory()));
-        		selectDirDlg.setMenu(false);
-        		selectDirDlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onCopy);
+    			if (tileList.selectedItems.length > 0) {
+	    			var selectDirDlg:SelectDirectoryDialog = SelectDirectoryDialog.show(this);
+	    			selectDirDlg.setFile(DirListing.getPathToNode(getSelectedDirectory()));
+	        		selectDirDlg.setMenu(false);
+	        		selectDirDlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onCopy);
+       			} else {
+       				Alert.show(TextI18n.getInstance().getText("selectFile"));
+       			}
+        	} else if (event.item.@data == "move"){
+        		if (tileList.selectedItems.length > 0) {
+        			var dlgMove:OpenSaveFileDialog; 
+        			var dataPost:DataPost = createCopyMovePost();
+        			if (tileList.selectedItems.length == 1) {
+        				dlgMove = SelectDestinationDialog.show(this, tileList.selectedItems[0].@name);
+        			} else {
+        				dlgMove = SelectDirectoryDialog.show(this);
+        			}
+        			
+					dlgMove.parameter = dataPost;
+	        		dlgMove.setFile(DirListing.getPathToNode(getSelectedDirectory()));
+	        		dlgMove.setMenu(false);
+	        		dlgMove.addEventListener(OpenSaveFileDialog.FILESELECTED, onMove);
+        		} else {
+       				Alert.show(TextI18n.getInstance().getText("selectFile"));
+       			}
         	} else {
 	            Alert.show("Label: " + event.item.@label + "\n" + 
 	                "Data: " + event.item.@data, "Clicked menu item");
@@ -307,6 +349,10 @@
 			}
 			
 			tileListData = new XMLListCollection(getSelectedDirectory().*);
+			
+			if (request.data.command == "copy" || request.data.command == "move"){
+				refreshNode(getNodeFromPath(null, request.data.destDir, false), true);
+			}
 			
 			var newEvent:DirectoryEvent = new DirectoryEvent(LISTING_RECEIVED);
         	newEvent.directory = directory;
