@@ -7,6 +7,7 @@
 	>
 	<mx:Script>
 	<![CDATA[
+		import com.filemanagerpn.SelectDirectoryDialog;
 		import mx.events.CloseEvent;
 		import com.filemanagerpn.DialogFileSelectedEvent;
 		import com.filemanagerpn.SaveFileDialog;
@@ -31,10 +32,9 @@
             		<menuitem label="dlRefresh" data="refresh"/>
                     <menuitem label="dlNewDirectory" data="ndir"/>
                     <menuitem label="dlRemove" data="rm"/>
-                    <menuitem label="save" data="save"/>
+                    <menuitem label="dlCopy" data="copy"/>
                 </menuitem>
             </r>;
-        
         
         private function onSaveDlg(event:DialogFileSelectedEvent):void {
         	//tova se izpylnqva kogato potrebitelq natisne "save"
@@ -71,6 +71,23 @@
 			dataPost.doPost();
 		}
 		
+		private function onCopy(event:DialogFileSelectedEvent):void {
+			var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/fscommand.php");
+			var files:String = "";
+			for each (var f:XML in tileList.selectedItems) {
+				files += f.@name + ";"; 
+			}
+			
+			dataPost.getData().dir = DirListing.getPathToNode(getSelectedDirectory());
+			dataPost.getData().command = "copy"
+			dataPost.getData().files = files;
+			dataPost.getData().destDir = event.file;
+			trace("copying " + files + " from " + dataPost.getData().dir + " to " + dataPost.getData().destDir);
+			dataPost.onComplete = onListingReceived;
+			dataPost.doPost();
+		}
+		
         // Event handler for the MenuBar control's itemClick event.
         private function menuHandler(event:MenuEvent):void  {
         	if (event.item.@data == "refresh") {
@@ -93,6 +110,11 @@
 	        		Alert.show("Delete " + files + "?", "Delete?", 4, null, 
 	        			removeSelectedFiles, null, Alert.YES | Alert.NO);
     			}
+    		} else if (event.item.@data == "copy"){
+    			var selectDirDlg:SelectDirectoryDialog = SelectDirectoryDialog.show(this);
+    			selectDirDlg.setFile(DirListing.getPathToNode(getSelectedDirectory()));
+        		selectDirDlg.setMenu(false);
+        		selectDirDlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onCopy);
         	} else {
 	            Alert.show("Label: " + event.item.@label + "\n" + 
 	                "Data: " + event.item.@data, "Clicked menu item");

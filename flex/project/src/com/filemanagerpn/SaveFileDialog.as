@@ -24,7 +24,7 @@ package com.filemanagerpn
 			view.btnOk.label = "Save";
 		}
 		protected override function checkFile(event:DirectoryEvent):Boolean{
-			return true;
+			return event.selectedFile != null && event.selectedFile.length > 0;
 		}
 		
 	}

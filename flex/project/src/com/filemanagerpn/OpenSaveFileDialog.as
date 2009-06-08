@@ -45,7 +45,7 @@ package com.filemanagerpn
 		
 		private function onFileOpen(event:DirectoryEvent):void {
 			view.listing.removeEventListener(DirListing.LISTING_RECEIVED, onFileOpen);
-			if (event.selectedFile != null && event.selectedFile.length > 0 && checkFile(event)) {
+			if (checkFile(event)) {
 				fileName = DirListing.getPathToNode( event.directory) + event.selectedFile;
 				titleWindow_close(null);
 				var e:DialogFileSelectedEvent = new DialogFileSelectedEvent(FILESELECTED);
@@ -62,7 +62,7 @@ package com.filemanagerpn
 			view.listing.openFile(view.fileName.text);
 		}
 		
-		private function titleWindow_close(evt:CloseEvent):void {
+		protected function titleWindow_close(evt:CloseEvent):void {
             PopUpManager.removePopUp(this);
         }
 		
