@@ -24,26 +24,32 @@ function delete_file($fname) {
 	return true;
 }
 
+function local_path_encoded($absolute) {
+	global $userPath;
+	return urlencode(substr($absolute, strlen($userPath)));
+}
+
 function copy_file($src, $dst) {
+	global $userPath;
 	if (is_dir($src)) {
 		$dir_handle = opendir($src);
 		if (!$dir_handle)
 			return false;
-		if (!mkdir($dst)) {
-			echo $dst;
-			return false;
+		if (!@mkdir($dst)) {
+			return "error:mkdirFailed(" . local_path_encoded($dst) . ")";
 		}
 		while($file = readdir($dir_handle)) {
 			if ($file != "." && $file != "..") {
-				if (!copy_file($src . "/" . $file, $dst . "/" . $file)) {
-					return false;
+				$result = copy_file($src . "/" . $file, $dst . "/" . $file);
+				if ($result != "") {
+					return $result;
 				}
 			}
 		}
 		closedir($dir_handle);
 	} else {
 		if (!@copy($src, $dst)) {
-			return false;
+			return "error:copyFailed(" . local_path_encoded($src) . "," . local_path_encoded($dst) . ")";;
 		}
 	}
 	return true;
@@ -92,8 +98,9 @@ if ($_POST["command"]=="mkdir") {
 			if ($destDir == $path) {
 				$dstFile=get_new_name($file);
 			}
-			if (!copy_file($file, $destDir . "/" . $dstFile)) {
-				echo "error:copyFile(" . urlencode($file) . ")";
+			$result = copy_file($file, $destDir . "/" . $dstFile);
+			if ($result != "") {
+				echo $result;
 				die;
 			}
 		}
