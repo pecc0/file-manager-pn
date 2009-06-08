@@ -2,6 +2,7 @@ package com.filemanagerpn
 {
 	import flash.events.MouseEvent;
 	
+	import mx.containers.VBox;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
@@ -23,6 +24,7 @@ package com.filemanagerpn
 			view.btnOk.label = "OK";
 			view.fileName.parent.removeChild(view.fileName);
 			view.listing.tileList.parent.removeChild(view.listing.tileList);
+			((VBox) (view.listing.directoryTree.parent)).percentWidth=100;
 			view.btnOk.addEventListener(MouseEvent.CLICK, onOk);
 			
 		}

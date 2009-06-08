@@ -14,6 +14,8 @@ package com.filemanagerpn
 		
 		protected var fileName:String = null;
 		
+		public var parameter:Object;
+		
 		public static const FILESELECTED:String="fileSelected";
 		
 		public function OpenSaveFileDialog(enableMenu:Boolean = true)
