@@ -1,6 +1,8 @@
 <?php
 include 'securedHeader.php';
 
+include 'loginCheck.php';
+
 function checkPath() {
 	include 'constants.php';
 	
