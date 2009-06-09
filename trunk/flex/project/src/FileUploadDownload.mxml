@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	xmlns:example="com.example.programmingas3.fileio.*"
+	 currentState="upload">
+	<mx:states>
+		<mx:State name="upload">
+			<mx:AddChild position="lastChild">
+				<mx:Panel title="Upload File" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" id="panel1"
+					creationComplete="fileUpload.init(uploadProgress, cancelUpload);">
+				    <mx:ProgressBar id="uploadProgress" label="" mode="manual" />
+				    <mx:ControlBar horizontalAlign="right">
+				        <mx:Button id="cancelUpload" label="Cancel" click="fileUpload.cancelUpload()" enabled="false" />
+				    </mx:ControlBar>
+				</mx:Panel>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="download">
+			<mx:AddChild position="lastChild">
+				<mx:Panel title="Download File" paddingTop="10" 
+					paddingBottom="10" paddingLeft="10" paddingRight="10"
+					creationComplete="fileDownload.init(downloadProgress, cancelDownload);"
+					>
+					<mx:ProgressBar id="downloadProgress" label="" mode="manual" />
+					<mx:ControlBar horizontalAlign="right">
+					    <mx:Button id="cancelDownload" label="Cancel" click="fileDownload.cancelDownload()" enabled="false" />
+					    <!--
+					    <mx:Button id="startDownload" label="Start download" click="fileDownload.startDownload()" enabled="true" />
+					    -->
+					</mx:ControlBar>
+				</mx:Panel>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+
+	<example:FileUpload id="fileUpload"  />
+	<example:FileDownload id="fileDownload"  />
+
+</mx:Module>

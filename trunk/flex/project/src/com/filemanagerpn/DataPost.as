@@ -1,5 +1,7 @@
 ﻿package  com.filemanagerpn
 {
+	import flash.events.EventDispatcher;
+	
 	import mx.utils.URLUtil;
 	
 	
@@ -7,7 +9,7 @@
 	 * ...
 	 * @author Petko
 	 */
-	public class DataPost
+	public class DataPost extends EventDispatcher
 	{
 		import flash.events.Event;
 		import flash.events.ProgressEvent;
@@ -24,7 +26,7 @@
 		
 		//TODO: write getters and setters for these three
 		//public var url:String;
-		private var request:URLRequest;
+		protected var request:URLRequest;
 		
 		public var onComplete:Function;
 		
