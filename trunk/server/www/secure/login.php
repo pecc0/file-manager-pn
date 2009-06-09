@@ -4,7 +4,7 @@
 	
 	include 'securedHeader.php';
 
-	include 'loginCheck.php';
+	include 'checkPostedLogin.php';
 	if (!file_exists($usersHome . '/' . $user)) 
 	{
 		printf("userNotExist(%s)", $user);

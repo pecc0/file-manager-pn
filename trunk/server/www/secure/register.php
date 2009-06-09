@@ -5,7 +5,7 @@
 	//print_r($_ENV);
 	
 	
-	include 'loginCheck.php';
+	include 'checkPostedLogin.php';
 	//echo dir('.');
 	//echo $_SERVER["USERS_HOME"]
 	//echo $_POST["user"];

@@ -1,7 +1,11 @@
 <?php
+
 $suppressDirList=true;
 include 'listdir.php';
+
 include 'constants.php';
+include 'loginCheck.php';
+
 function delete_file($fname) {
 	if (is_dir($fname)) {
 		$dir_handle = opendir($fname);
