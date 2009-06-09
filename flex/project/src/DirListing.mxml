@@ -3,10 +3,10 @@
 	width="100%"
 	height="100%"
 	creationComplete="initCollections();"
-	
 	>
 	<mx:Script>
 	<![CDATA[
+		import com.filemanagerpn.UploadDownloadDialog;
 		import com.filemanagerpn.SelectDestinationDialog;
 		import com.filemanagerpn.SelectDirectoryDialog;
 		import mx.events.CloseEvent;
@@ -35,6 +35,8 @@
                     <menuitem label="dlRemove" data="rm"/>
                     <menuitem label="dlCopy" data="copy"/>
                     <menuitem label="dlMove" data="move"/>
+                    <menuitem label="dlUpload" data="upload"/>
+                    <menuitem label="dlDownload" data="download"/>
                 </menuitem>
             </r>;
         
@@ -108,7 +110,10 @@
 				" to " + dataPost.getData().destDir + ";" + dataPost.getData().dest);
 			dataPost.doPost();
 		}
-		
+		private function onUploadComplete(event:Event):void {
+			refreshNode(getSelectedDirectory(), true);
+			trace("upload complete");
+		}
         // Event handler for the MenuBar control's itemClick event.
         private function menuHandler(event:MenuEvent):void  {
         	if (event.item.@data == "refresh") {
@@ -156,6 +161,15 @@
 	        		dlgMove.addEventListener(OpenSaveFileDialog.FILESELECTED, onMove);
         		} else {
        				Alert.show(TextI18n.getInstance().getText("selectFile"));
+       			}
+       		} else if (event.item.@data == "upload"){
+       			var uddlg:UploadDownloadDialog = UploadDownloadDialog.show(this, "upload", DirListing.getPathToNode(getSelectedDirectory()));
+       			uddlg.addEventListener(Event.COMPLETE, onUploadComplete); 
+       		} else if (event.item.@data == "download"){
+       			if (tileList.selectedItems.length > 0) {
+       				
+       				UploadDownloadDialog.show(this, "download", 
+       					DirListing.getPathToNode(getSelectedDirectory()) + "/" + tileList.selectedItems[0].@name);
        			}
         	} else {
 	            Alert.show("Label: " + event.item.@label + "\n" + 
