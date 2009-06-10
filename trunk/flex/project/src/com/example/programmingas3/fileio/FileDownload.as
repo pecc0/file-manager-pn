@@ -7,14 +7,11 @@
     import flash.net.URLRequest;
     import flash.net.URLRequestMethod;
     import flash.net.URLVariables;
-    import flash.net.navigateToURL;
     
     import mx.controls.Button;
     import mx.controls.ProgressBar;
 
     public class FileDownload extends DataPost {
-        // Hard-code the URL of file to download to user's computer.
-        private const DOWNLOAD_URL:String = "http://www.yourdomain.com/file_to_download.zip";
         private var fr:FileReference;
         // Define reference to the download ProgressBar component.
         private var pb:ProgressBar;
@@ -39,7 +36,12 @@
             fr.addEventListener(ProgressEvent.PROGRESS, progressHandler);
             fr.addEventListener(Event.COMPLETE, completeHandler);
             
-            startDownload()
+            var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/createTempSession.php");
+			dataPost.getData().command = "download";
+			dataPost.getData().parameter = getData().serverfile;
+			dataPost.onComplete = onSidReceived;
+			dataPost.doPost();
         }
 
         /**
@@ -48,7 +50,7 @@
         public function cancelDownload():void {
             fr.cancel();
 //            pb.label = "DOWNLOAD CANCELLED";
-            btn.enabled = false;
+            //btn.enabled = false;
             dispatchEvent(new Event(Event.COMPLETE));
         }
 
@@ -56,12 +58,13 @@
          * Begin downloading the file specified in the DOWNLOAD_URL constant.
          */
         public function startDownload():void {
-           	var dataPost:DataPost = new DataPost(new URLVariables());
-			dataPost.setUrl("/secure/createTempSession.php");
-			dataPost.getData().command = "download";
-			dataPost.getData().parameter = getData().serverfile;
-			dataPost.onComplete = onSidReceived;
-			dataPost.doPost();
+        	var filename:String = getData().serverfile;
+        	filename = filename.substr(filename.lastIndexOf("/") + 1);
+        	request.method = URLRequestMethod.POST;
+        	if (filename.length > 0) {
+        		trace("downloading from " + request.url);
+           		fr.download(request, filename);
+           	}
         }
 
 		private function onSidReceived(aRequest:URLRequest, loader:URLLoader):void {
@@ -69,13 +72,20 @@
 			if (result.substr(0, 6) == "error:") {
 				
 			} else if (result.length > 0) {
+				//var dataPost:DataPost = new DataPost(new URLVariables());
+				//dataPost.setUrlNonSecure("/downloadFile.php?" + result);
+				//dataPost.onComplete = onDownloadLocationReceived;
+				//dataPost.doPost();
 				setUrlNonSecure("/downloadFile.php?" + result);
-				request.method = URLRequestMethod.POST;
-				navigateToURL(request, "_blank");
-				dispatchEvent(new Event(Event.COMPLETE));
+				
    			}
 		}
 		
+		private function onDownloadLocationReceived(aRequest:URLRequest, loader:URLLoader):void {
+			var result:String = loader.data;
+			setUrlNonSecure(result);
+			request.method = URLRequestMethod.POST;
+		}
         /**
          * When the OPEN event has dispatched, change the progress bar's label 
          * and enable the "Cancel" button, which allows the user to abort the 
@@ -83,7 +93,7 @@
          */
         private function openHandler(event:Event):void {
 //            pb.label = "DOWNLOADING %3%%";
-            btn.enabled = true;
+            //btn.enabled = true;
         }
         
         /**
@@ -100,8 +110,8 @@
         private function completeHandler(event:Event):void {
 //            pb.label = "DOWNLOAD COMPLETE";
             pb.setProgress(0, 100);
-            btn.enabled = false;
-           
+            //btn.enabled = false;
+            dispatchEvent(new Event(Event.COMPLETE));
         }
     }
 }

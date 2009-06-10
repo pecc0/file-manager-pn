@@ -22,10 +22,9 @@
 					>
 					<mx:ProgressBar id="downloadProgress" label="" mode="manual" />
 					<mx:ControlBar horizontalAlign="right">
-					    <mx:Button id="cancelDownload" label="Cancel" click="fileDownload.cancelDownload()" enabled="false" />
-					    <!--
-					    <mx:Button id="startDownload" label="Start download" click="fileDownload.startDownload()" enabled="true" />
-					    -->
+						<mx:Button id="startDownload" label="Start download" click="fileDownload.startDownload()" enabled="true" />
+					    <mx:Button id="cancelDownload" label="Cancel" click="fileDownload.cancelDownload()" enabled="true" />
+					    
 					</mx:ControlBar>
 				</mx:Panel>
 			</mx:AddChild>
