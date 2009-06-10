@@ -16,14 +16,22 @@
 			<mx:AddChild position="lastChild">
 				<ns1:AccountHandler 
 					id="accounthandler1" 
-					creationComplete="accounthandler1.addEventListener(AccountHandler.LOGIN_SUCCESSFUL, onLoginSucceeded);">
+					creationComplete="onAccHandlerComplete();">
 				</ns1:AccountHandler>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="fileManagement">
 			<mx:AddChild position="lastChild">
-				<ns1:FileHandler >
+				<ns1:FileHandler id="fileHandler"
+					creationComplete="onFhComplete();">
 				</ns1:FileHandler>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="paint">
+			<mx:AddChild position="lastChild">
+				<ns1:PaintHandler 
+					creationComplete="event.target.addEventListener('paintClosed', onLoginSucceeded);">
+				</ns1:PaintHandler>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -47,18 +55,29 @@
 			}
 		}
 		
-		public function initManager():void {
+		private function onAccHandlerComplete():void{
+			accounthandler1.addEventListener(AccountHandler.LOGIN_SUCCESSFUL, onLoginSucceeded);
 			
+		}
+		
+		private function onFhComplete():void{
+			fileHandler.addEventListener("paintSelected", onPaintSelected);
+		}
+		
+		public function initManager():void {
 			var dataPost:DataPost = new DataPost(new URLVariables());
 			dataPost.setUrl("/secure/index.php");
 			dataPost.onComplete = onSidReceived;
 			dataPost.doPost();
-			
 		}
 		
-		private function onLoginSucceeded(event:Event):void{
+		private function onLoginSucceeded(event:Event):void {
 			currentState = "fileManagement";
 		}
+		
+		private function onPaintSelected(event:Event):void {
+			currentState = "paint";
+		} 
 		]]> 
 	</mx:Script>
 </mx:Module>

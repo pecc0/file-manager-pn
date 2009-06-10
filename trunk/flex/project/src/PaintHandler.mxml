@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" borderColor="#080909">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" borderColor="#080909" 
+	>
 
 	<mx:Script source="com/filemanagerpn/PaintCanvas.as"></mx:Script>
-	<mx:Canvas 	id="canvas_board" 	x="10" 	y="10" 
-				width="532" 	height="287"  
+	
+	<mx:Canvas 	id="canvas_board" 	x="10" 	y="48" 
+				width="532" 	height="249"  
 				borderStyle="solid" 	borderColor="#141617"
 				creationComplete="init(event)" >
     </mx:Canvas>
     
-	<mx:Button x="460" y="305" label="Download" click="bitComSaveJPG()"/>
-	<mx:Button x="10" y="305" label="Save" click="saveJPG()"/>
-	<mx:Button x="72" y="305" label="Save as" click="saveJPG()"/>
+	<mx:Button x="460" y="305" label="Download {fileName}" click="bitComSaveJPG()"/>
+	<mx:Button x="10" y="305" label="Save" click="save()"/>
+	<mx:Button x="72" y="305" label="Save as" click="saveAs()"/>
+	<mx:Button label="Back" x="546" y="10" click="dispatchEvent(new Event('paintClosed'));"/>
+	
 	
 </mx:Module>

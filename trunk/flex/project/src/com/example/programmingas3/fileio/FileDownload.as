@@ -35,13 +35,7 @@
             fr.addEventListener(Event.OPEN, openHandler);
             fr.addEventListener(ProgressEvent.PROGRESS, progressHandler);
             fr.addEventListener(Event.COMPLETE, completeHandler);
-            
-            var dataPost:DataPost = new DataPost(new URLVariables());
-			dataPost.setUrl("/secure/createTempSession.php");
-			dataPost.getData().command = "download";
-			dataPost.getData().parameter = getData().serverfile;
-			dataPost.onComplete = onSidReceived;
-			dataPost.doPost();
+            createTempSession("download", getData().serverfile, onSidReceived);
         }
 
         /**

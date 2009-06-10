@@ -64,15 +64,9 @@
          * Begin uploading the file specified in the UPLOAD_URL constant.
          */
         private function selectHandler(event:Event):void {
-        	
-        	var dataPost:DataPost = new DataPost(new URLVariables());
-			dataPost.setUrl("/secure/createTempSession.php");
-			dataPost.getData().command = "upload";
-			dataPost.getData().parameter = fr.name + fr.size;
-			dataPost.onComplete = onSidReceived;
-			dataPost.doPost();
-        	
+			createTempSession("upload", fr.name + fr.size, onSidReceived);
         }
+        
 		private function onSidReceived(aRequest:URLRequest, loader:URLLoader):void {
 			var result:String = loader.data;
 			if (result.substr(0, 6) == "error:") {

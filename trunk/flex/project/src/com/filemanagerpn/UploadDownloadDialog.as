@@ -10,6 +10,10 @@ package com.filemanagerpn
 	public class UploadDownloadDialog extends TitleWindow
 	{
 		private var view:FileUploadDownload;
+		
+		[Bindable]
+		public var serverFile:String;
+		
 		public function UploadDownloadDialog()
 		{
 			super();
@@ -29,6 +33,7 @@ package com.filemanagerpn
         			worker = dlg.view.fileUpload;
         		break;
         		case "download":
+        			dlg.view.downloadFile = serverFile;
         			worker = dlg.view.fileDownload;
         		break;
         		 
