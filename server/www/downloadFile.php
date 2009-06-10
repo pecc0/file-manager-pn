@@ -1,9 +1,9 @@
 <?php
-error_log(print_r($_GET, true));
+//error_log(print_r($_GET, true));
 session_start();
 
-error_log(print_r($_SESSION, true));
-error_log(session_id());
+//error_log(print_r($_SESSION, true));
+//error_log(session_id());
 if ($_SESSION['command']=='download') {
 	//error_log('file ok');
 	//error_log(print_r($_FILES, true));
@@ -39,5 +39,7 @@ if ($_SESSION['command']=='download') {
 	
 	session_unset();
 	session_destroy();
+} else {
+	echo "Invalid session";
 }
 ?>
