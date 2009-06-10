@@ -84,6 +84,14 @@
 			return request.data;
 		}
 		
+		public function set data(o:Object):void {
+			request.data = o;
+		}
+		
+		public function get requestHeaders():Array {
+			return request.requestHeaders;
+		}
+		
 		public function doPost():void
 		{
 			 request.method = URLRequestMethod.POST;
@@ -101,6 +109,15 @@
 				}
 			 }
 			 loader.load(request);
+		}
+		
+		public static function createTempSession(aCommand:String, aParameter:String, onSid:Function):void {
+			var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/createTempSession.php");
+			dataPost.getData().command = aCommand;
+			dataPost.getData().parameter = aParameter;
+			dataPost.onComplete = onSid;
+			dataPost.doPost();
 		}
 		
 		private function configureListeners(dispatcher:IEventDispatcher):void {

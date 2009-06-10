@@ -6,13 +6,17 @@
  */
  
  
-import flash.events.*;
-import mx.containers.Canvas;
 import com.adobe.images.JPGEncoder;
+import com.example.programmingas3.fileio.RawDataPost;
+import com.filemanagerpn.DataPost;
 import com.filemanagerpn.DialogFileSelectedEvent;
-import com.filemanagerpn.SaveFileDialog;
 import com.filemanagerpn.OpenSaveFileDialog;
-import mx.controls.Alert;
+import com.filemanagerpn.SaveFileDialog;
+import com.filemanagerpn.UploadDownloadDialog;
+
+import flash.events.*;
+
+import mx.containers.Canvas;
 
 private function init(e:Event):void {
 	//trace("init");
@@ -42,24 +46,49 @@ private function onMouseUp(e:MouseEvent): void {
 }
 
 private function bitComSaveJPG() : void { 
+	if (fileName.length > 0) {
+		UploadDownloadDialog.show(this, "download", fileName);
+	}
+}
 
+[Bindable]
+private var fileName:String="";
+
+private function saveAs():void {
+	var sdlg:SaveFileDialog = SaveFileDialog.show(this);
+	sdlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onSaveDlg);
+}
+
+private function save():void {
+	if (fileName.length == 0) {
+		saveAs();
+	} else {
+		saveJPG(fileName);
+	}
+}
+
+private function saveJPG(fileName:String):void {
+	DataPost.createTempSession("imgsave", fileName, onSidReceived);	
+}
+
+private function onSaveDlg(event:DialogFileSelectedEvent):void {
+	//fileName = event.file;
+	saveJPG(event.file);
+}
+
+private function onSidReceived(aRequest:URLRequest, loader:URLLoader):void {
 	var jpgSource:BitmapData = new BitmapData (canvas_board.width, canvas_board.height);
 	jpgSource.draw(canvas_board);
 
 	var jpgEncoder:JPGEncoder = new JPGEncoder(85);
 	var jpgStream:ByteArray = jpgEncoder.encode(jpgSource);
-	
-	var header:URLRequestHeader = new URLRequestHeader("Content-type", "application/octet-stream");
-	var jpgURLRequest:URLRequest = new URLRequest("handlePainting.php?name=sketch.jpg");
-	jpgURLRequest.requestHeaders.push(header);
-	jpgURLRequest.method = URLRequestMethod.POST;
-	jpgURLRequest.data = jpgStream;
-	navigateToURL(jpgURLRequest, "_blank");
-}
-
-private function saveJPG():void {
-//	var dlg:SaveFileDialog = SaveFileDialog.show(this);
-//    dlg.addEventListener(OpenSaveFileDialog.FILESELECTED, onSaveDlg);
+	var dataPost:RawDataPost = new RawDataPost(new URLVariables());
+	dataPost.data = jpgStream;
+	dataPost.setUrlNonSecure("/handlePainting.php?" + loader.data);
+	dataPost.onComplete = function (aRequest:URLRequest, loader:URLLoader):void {
+		fileName = loader.data;
+	}
+	dataPost.doPost();
 }
 //
 // private function onSaveDlg(event:DialogFileSelectedEvent):void {

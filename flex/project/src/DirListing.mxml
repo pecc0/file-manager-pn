@@ -163,7 +163,8 @@
        				Alert.show(TextI18n.getInstance().getText("selectFile"));
        			}
        		} else if (event.item.@data == "upload"){
-       			var uddlg:UploadDownloadDialog = UploadDownloadDialog.show(this, "upload", DirListing.getPathToNode(getSelectedDirectory()));
+       			var uddlg:UploadDownloadDialog = UploadDownloadDialog.show(this, "upload", 
+       				DirListing.getPathToNode(getSelectedDirectory()));
        			uddlg.addEventListener(Event.COMPLETE, onUploadComplete); 
        		} else if (event.item.@data == "download"){
        			if (tileList.selectedItems.length > 0) {

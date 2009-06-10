@@ -16,7 +16,7 @@
 		</mx:State>
 		<mx:State name="download">
 			<mx:AddChild position="lastChild">
-				<mx:Panel title="Download File" paddingTop="10" 
+				<mx:Panel title="Download File {downloadFile}" paddingTop="10" 
 					paddingBottom="10" paddingLeft="10" paddingRight="10"
 					creationComplete="fileDownload.init(downloadProgress, cancelDownload);"
 					>
@@ -33,5 +33,5 @@
 
 	<example:FileUpload id="fileUpload"  />
 	<example:FileDownload id="fileDownload"  />
-
+	<mx:String id="downloadFile"></mx:String>
 </mx:Module>
