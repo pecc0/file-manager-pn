@@ -2,6 +2,7 @@
 	include 'securedHeader.php';
 	include 'constants.php';
 	include 'loginCheck.php';
+	
 	$userDir=$usersHome . '/' . $_SESSION['UNAME'];
 	
 	session_regenerate_id();

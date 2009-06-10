@@ -6,7 +6,7 @@ include 'listdir.php';
 include 'constants.php';
 include 'loginCheck.php';
 
-include 'fsUtils.php'
+include 'fsUtils.php';
 
 function local_path_encoded($absolute) {
 	global $userPath;
