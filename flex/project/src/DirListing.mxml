@@ -101,7 +101,7 @@
 			var dataPost:DataPost = event.target.parameter;
 			dataPost.getData().command = "move";
 			dataPost.getData().dest = event.file;
-			if (tileList.selectedItems.length == 1) {
+			if (tileList.selectedItems.length <= 1) {
 				dataPost.getData().destDir = DirListing.getPathToNode(event.direvent.directory);
 			} else {
 				dataPost.getData().destDir = event.file; 
