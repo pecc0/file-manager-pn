@@ -142,7 +142,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_OBhB0GoIEd69btqTYEzH5w" name="downloadFile.php"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_XoyeEGoIEd69btqTYEzH5w" supplier="_OBhB0GoIEd69btqTYEzH5w" client="_nW7uwGoEEd69btqTYEzH5w"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_Yjfy0GoIEd69btqTYEzH5w" name="receiveFile.php"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_cg9t8GoIEd69btqTYEzH5w" name="downloadFile.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cg9t8GoIEd69btqTYEzH5w" name="handlePainting.php"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_gbmXgGoIEd69btqTYEzH5w" supplier="_Yjfy0GoIEd69btqTYEzH5w" client="_oOqoAGoEEd69btqTYEzH5w"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_hOaUgGoIEd69btqTYEzH5w" supplier="_cg9t8GoIEd69btqTYEzH5w" client="_4o5l0GoEEd69btqTYEzH5w"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_i4qP0GoIEd69btqTYEzH5w" supplier="_AVcv4GoHEd69btqTYEzH5w" client="_vMNo8GoEEd69btqTYEzH5w"/>
