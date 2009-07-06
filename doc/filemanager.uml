@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_6Z5wwGoBEd69btqTYEzH5w" name="filemanager">
+  <elementImport xmi:id="_6e-eAGoBEd69btqTYEzH5w">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_6fRY8GoBEd69btqTYEzH5w">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_6fRY8WoBEd69btqTYEzH5w">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_6fRY8moBEd69btqTYEzH5w">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_NqOx8GoCEd69btqTYEzH5w" name="FileManagerApplication"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uv1g4GoCEd69btqTYEzH5w" name="FileManagerMain"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_vrJSkGoCEd69btqTYEzH5w" memberEnd="_vrJSkWoCEd69btqTYEzH5w _vrScgmoCEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_vrJSkWoCEd69btqTYEzH5w" name="src" type="_NqOx8GoCEd69btqTYEzH5w" association="_vrJSkGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vrScgWoCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vrScgGoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_vrScgmoCEd69btqTYEzH5w" name="dst" type="_uv1g4GoCEd69btqTYEzH5w" association="_vrJSkGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vrSchGoCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vrScg2oCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yTrbEGoCEd69btqTYEzH5w" name="AccountHandler"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_y_CFMGoCEd69btqTYEzH5w" memberEnd="_y_CFMWoCEd69btqTYEzH5w _y_CFNGoCEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_y_CFMWoCEd69btqTYEzH5w" name="src" type="_uv1g4GoCEd69btqTYEzH5w" association="_y_CFMGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y_CFM2oCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_CFMmoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_y_CFNGoCEd69btqTYEzH5w" name="dst" type="_yTrbEGoCEd69btqTYEzH5w" association="_y_CFMGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y_CFNmoCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_CFNWoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_3HYaoGoCEd69btqTYEzH5w" name="PaintHandler" clientDependency="_jUk3IGoFEd69btqTYEzH5w _n9HIgGoFEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7K9k0GoCEd69btqTYEzH5w" name="FileHandler" clientDependency="_iDg34GoFEd69btqTYEzH5w _mEHmkGoFEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_8_L7gGoCEd69btqTYEzH5w" memberEnd="_8_L7gWoCEd69btqTYEzH5w _8_L7hGoCEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_8_L7gWoCEd69btqTYEzH5w" name="src" type="_uv1g4GoCEd69btqTYEzH5w" association="_8_L7gGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8_L7g2oCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8_L7gmoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_8_L7hGoCEd69btqTYEzH5w" name="dst" type="_7K9k0GoCEd69btqTYEzH5w" association="_8_L7gGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8_L7hmoCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8_L7hWoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_-bSGEGoCEd69btqTYEzH5w" memberEnd="_-bSGEWoCEd69btqTYEzH5w _-bSGFGoCEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_-bSGEWoCEd69btqTYEzH5w" name="src" type="_uv1g4GoCEd69btqTYEzH5w" association="_-bSGEGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-bSGE2oCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-bSGEmoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_-bSGFGoCEd69btqTYEzH5w" name="dst" type="_3HYaoGoCEd69btqTYEzH5w" association="_-bSGEGoCEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-bSGFmoCEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-bSGFWoCEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LT5-UGoDEd69btqTYEzH5w" name="OpenSaveDialogModule"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_dqHgoGoDEd69btqTYEzH5w" name="OpenSaveFileDialog"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_frKyYGoDEd69btqTYEzH5w" memberEnd="_frKyYWoDEd69btqTYEzH5w _frKyZGoDEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_frKyYWoDEd69btqTYEzH5w" name="src" type="_dqHgoGoDEd69btqTYEzH5w" association="_frKyYGoDEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_frKyY2oDEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_frKyYmoDEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_frKyZGoDEd69btqTYEzH5w" name="dst" type="_LT5-UGoDEd69btqTYEzH5w" association="_frKyYGoDEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_frKyZmoDEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_frKyZWoDEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_gcL_oGoDEd69btqTYEzH5w" memberEnd="_gcL_oWoDEd69btqTYEzH5w _gcL_pGoDEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_gcL_oWoDEd69btqTYEzH5w" name="src" type="_LT5-UGoDEd69btqTYEzH5w" association="_gcL_oGoDEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gcL_o2oDEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gcL_omoDEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_gcL_pGoDEd69btqTYEzH5w" name="dst" type="_7K9k0GoCEd69btqTYEzH5w" association="_gcL_oGoDEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gcL_pmoDEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gcL_pWoDEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_FmaakGoEEd69btqTYEzH5w" name="SaveFileDialog">
+    <generalization xmi:id="_RR2uAGoEEd69btqTYEzH5w" general="_dqHgoGoDEd69btqTYEzH5w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_K-yNcGoEEd69btqTYEzH5w" name="SelectDirectoryDialog">
+    <generalization xmi:id="_R3HXMGoEEd69btqTYEzH5w" general="_dqHgoGoDEd69btqTYEzH5w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_QXcUMGoEEd69btqTYEzH5w" name="SelectDestinationDialog">
+    <generalization xmi:id="_SVzeUGoEEd69btqTYEzH5w" general="_dqHgoGoDEd69btqTYEzH5w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_jqAKAGoEEd69btqTYEzH5w" name="UploadDownloadDialog"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nW7uwGoEEd69btqTYEzH5w" name="FileDownload" clientDependency="_XoyeEGoIEd69btqTYEzH5w">
+    <generalization xmi:id="_85Sc8GoEEd69btqTYEzH5w" general="_vMNo8GoEEd69btqTYEzH5w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_oOqoAGoEEd69btqTYEzH5w" name="FileUpload" clientDependency="_gbmXgGoIEd69btqTYEzH5w">
+    <generalization xmi:id="_8d3sQGoEEd69btqTYEzH5w" general="_vMNo8GoEEd69btqTYEzH5w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vMNo8GoEEd69btqTYEzH5w" name="DataPost" clientDependency="_i4qP0GoIEd69btqTYEzH5w">
+    <ownedAttribute xmi:id="_T49oQGoGEd69btqTYEzH5w" name="data" aggregation="composite"/>
+    <ownedAttribute xmi:id="_Ytj_sGoGEd69btqTYEzH5w" name="url" aggregation="composite"/>
+    <ownedOperation xmi:id="_U1m2sGoGEd69btqTYEzH5w" name="doPost">
+      <ownedParameter xmi:id="_Vj9KcGoGEd69btqTYEzH5w" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_aL4-4GoGEd69btqTYEzH5w" name="createTempSession">
+      <ownedParameter xmi:id="_ax4n4GoGEd69btqTYEzH5w" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_4o5l0GoEEd69btqTYEzH5w" name="RawDataPost" clientDependency="_hOaUgGoIEd69btqTYEzH5w">
+    <generalization xmi:id="_8Dy_YGoEEd69btqTYEzH5w" general="_vMNo8GoEEd69btqTYEzH5w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Gutp8GoFEd69btqTYEzH5w" name="FileUploadDownload"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_PbIAcGoFEd69btqTYEzH5w" memberEnd="_PbIAcWoFEd69btqTYEzH5w _PbIAdGoFEd69btqTYEzH5w">
+    <ownedEnd xmi:id="_PbIAcWoFEd69btqTYEzH5w" name="src" type="_jqAKAGoEEd69btqTYEzH5w" association="_PbIAcGoFEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PbIAc2oFEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PbIAcmoFEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_PbIAdGoFEd69btqTYEzH5w" name="dst" type="_Gutp8GoFEd69btqTYEzH5w" association="_PbIAcGoFEd69btqTYEzH5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PbIAdmoFEd69btqTYEzH5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PbIAdWoFEd69btqTYEzH5w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_iDg34GoFEd69btqTYEzH5w" supplier="_QXcUMGoEEd69btqTYEzH5w" client="_7K9k0GoCEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_jUk3IGoFEd69btqTYEzH5w" supplier="_FmaakGoEEd69btqTYEzH5w" client="_3HYaoGoCEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_mEHmkGoFEd69btqTYEzH5w" supplier="_K-yNcGoEEd69btqTYEzH5w" client="_7K9k0GoCEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_n9HIgGoFEd69btqTYEzH5w" supplier="_jqAKAGoEEd69btqTYEzH5w" client="_3HYaoGoCEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ACyIAGoGEd69btqTYEzH5w" name="TextI18n" clientDependency="_B_z1YGoGEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_B_z1YGoGEd69btqTYEzH5w" supplier="_vMNo8GoEEd69btqTYEzH5w" client="_ACyIAGoGEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AVcv4GoHEd69btqTYEzH5w" name="createTempSession.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Fld4AGoHEd69btqTYEzH5w" name="fscommand.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LxZOwGoHEd69btqTYEzH5w" name="index.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_OyNUYGoHEd69btqTYEzH5w" name="listdir.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZQeDAGoHEd69btqTYEzH5w" name="login.php" clientDependency="_j4tNAGoHEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ahrMMGoHEd69btqTYEzH5w" name="register.php" clientDependency="_kN29oGoHEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_fOrt4GoHEd69btqTYEzH5w" name="checkPostedLogin.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_hnuB0GoHEd69btqTYEzH5w" name="fsUtils.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_jY99AGoHEd69btqTYEzH5w" name="loginCheck.php"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_j4tNAGoHEd69btqTYEzH5w" supplier="_fOrt4GoHEd69btqTYEzH5w" client="_ZQeDAGoHEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_kN29oGoHEd69btqTYEzH5w" supplier="_fOrt4GoHEd69btqTYEzH5w" client="_ahrMMGoHEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mkNxAGoHEd69btqTYEzH5w" name="securedHeader.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_pa5qQGoHEd69btqTYEzH5w" name="xmlUtils.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_606qEGoHEd69btqTYEzH5w" name="constants.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_OBhB0GoIEd69btqTYEzH5w" name="downloadFile.php"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_XoyeEGoIEd69btqTYEzH5w" supplier="_OBhB0GoIEd69btqTYEzH5w" client="_nW7uwGoEEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Yjfy0GoIEd69btqTYEzH5w" name="receiveFile.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cg9t8GoIEd69btqTYEzH5w" name="downloadFile.php"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_gbmXgGoIEd69btqTYEzH5w" supplier="_Yjfy0GoIEd69btqTYEzH5w" client="_oOqoAGoEEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_hOaUgGoIEd69btqTYEzH5w" supplier="_cg9t8GoIEd69btqTYEzH5w" client="_4o5l0GoEEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_i4qP0GoIEd69btqTYEzH5w" supplier="_AVcv4GoHEd69btqTYEzH5w" client="_vMNo8GoEEd69btqTYEzH5w"/>
+</uml:Package>
