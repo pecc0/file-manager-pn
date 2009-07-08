@@ -17,6 +17,7 @@
 	        }
         ]]>
     </mx:Script>
+    <mx:Style source="../res/general.css"></mx:Style>
 	<ns1:FileManagerMain id="fmMain">
 	</ns1:FileManagerMain>
 

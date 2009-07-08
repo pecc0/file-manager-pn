@@ -1,10 +1,28 @@
 /* CSS file */
 
 
-.appAccount
-{
-	/*background-image: "../images/2.jpg";*/
+.appAccount {
 	horizontalAlign: center;
 	verticalAlign: top;
+	background-color: #00780b;
+	themeColor: #00FF06;
+	textAlign: center;
+	/*background-image: "@Embed('../res/2.jpg')"*/
 }
 
+Button
+{
+	themeColor: #12FF00;
+}
+Application
+{
+	backgroundSize: "100%";
+	backgroundGradientAlphas: 1.0, 1.0;
+	backgroundGradientColors: #29C300, #29C300;
+}
+
+.accLabels {
+	color: #f2c926;
+	font-weight: bold;
+	
+}
