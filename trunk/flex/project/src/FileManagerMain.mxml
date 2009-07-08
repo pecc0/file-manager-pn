@@ -4,8 +4,8 @@
 	height="100%"
 	horizontalAlign="center" 
 	verticalAlign="middle"
-	 currentState="notInitted"
-	 >
+	 currentState="accounts">
+	
 	<mx:states>
 		<mx:State name="notInitted">
 			<mx:AddChild position="lastChild">
