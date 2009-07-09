@@ -63,6 +63,7 @@
 		
 		private function onFhComplete():void{
 			fileHandler.addEventListener("paintSelected", onPaintSelected);
+			fileHandler.addEventListener("exitFm", onExit);
 		}
 		
 		public function initManager():void {
@@ -80,7 +81,15 @@
 		private function onPaintSelected(event:Event):void {
 			currentState = "paint";
 			paintHandler.openFile(fileHandler.dirListing.getSelectedFile());
-		} 
+		}
+		private function onExit(event:Event):void {
+			var dataPost:DataPost = new DataPost(new URLVariables());
+			dataPost.setUrl("/secure/exit.php");
+			dataPost.doPost();
+			currentState = "notInitted";
+			DataPost.setSID("");
+			initManager();
+		}
 		]]> 
 	</mx:Script>
 </mx:Module>
