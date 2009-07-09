@@ -112,6 +112,12 @@
 			 loader.load(request);
 		}
 		
+		/**
+		 * Creates a temporary session for HTTP transfer
+		 * @param aCommand A string that determines what will the session be used for
+		 * @param aParameter Parameter for the command
+		 * @param onSid A function that will be called when the new session ID is received
+		 */
 		public static function createTempSession(aCommand:String, aParameter:String, onSid:Function):void {
 			var dataPost:DataPost = new DataPost(new URLVariables());
 			dataPost.setUrl("/secure/createTempSession.php");

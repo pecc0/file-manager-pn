@@ -24,14 +24,11 @@
             private var menubarXML:XML = 
                 <r>
                 	<menuitem label="fhUserName">
-                        <menuitem label="fhLofOut" data="1A"/>
+                        <menuitem label="fhLofOut" data="logout"/>
                     </menuitem>
                     <menuitem label="fhTools">
                         <menuitem label="fhPaint" data="paint"/>
                         <menuitem label="fhSetWallPaper" data="setWp"/>
-                        <menuitem label="MenuItem 1-B" data="1B"/>
-                    </menuitem>
-                    <menuitem label="Menu2">
                     </menuitem>
                 </r>;
 
@@ -42,6 +39,8 @@
             		
             	} else if (event.item.@data == "setWp") {
             		wallPaper.setWallPaper(dirListing.getSelectedFile());
+            	} else if (event.item.@data == "logout") {
+            		dispatchEvent(new Event("exitFm"));
             	} else {
 	                Alert.show("Label:1232 " + event.item.@label + "\n" + 
 	                    "Data: " + event.item.@data, "Clicked menu item");
