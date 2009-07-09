@@ -7,6 +7,11 @@
 	background-color: #00780b;
 	themeColor: #00FF06;
 	textAlign: center;
+	backgroundGradientAlphas: 1.0, 0.12;
+	backgroundGradientColors: #F7FA05, #C0D320;
+	borderStyle: none;
+	cornerRadius: 4;
+	borderThickness: 0;
 	/*background-image: "@Embed('../res/2.jpg')"*/
 }
 
@@ -14,15 +19,24 @@ Button
 {
 	themeColor: #12FF00;
 }
-Application
-{
-	backgroundSize: "100%";
-	backgroundGradientAlphas: 1.0, 1.0;
-	backgroundGradientColors: #29C300, #29C300;
-}
 
 .accLabels {
 	color: #f2c926;
-	font-weight: bold;
-	
+	font-weight: normal;
+	fontFamily: Calibri;
+	fontSize: 14;
+}
+@font-face
+{
+	fontFamily: Calibri;
+	fontWeight: bold;
+	fontStyle: normal;
+	src: local("Calibri");
+}
+@font-face
+{
+	fontFamily: Calibri;
+	fontWeight: normal;
+	fontStyle: normal;
+	src: local("Calibri");
 }

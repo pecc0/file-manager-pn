@@ -62,71 +62,27 @@
 	
 	<mx:states> 
 	
-	<mx:State name="login"> 
+	<mx:State name="login" id="login"> 
 		<mx:SetEventHandler target="{button1}" name="click" handler="sendLoginData(idUser.text, idPass.text)"/>
 		<mx:SetProperty target="{formheading1}" name="label" value="{TextI18n.getInstance().getText('logInTxt')}"/>
-		<mx:AddChild relativeTo="{vbox1}" position="lastChild"></mx:AddChild>
 	</mx:State>
-	<mx:State name="register">
+	
+	<mx:State name="register" id="register">
 		<mx:AddChild relativeTo="{formitem1}" position="before">
 			<mx:FormItem label="{TextI18n.getInstance().getText('confirmPass')}" labelWidth="100"
 				styleName="accLabels">
-				<mx:TextInput id="idConfirm" click="currentState='C'" />
+				<mx:TextInput id="idConfirm" click="currentState='C'"  width="150" height="15"/>
 			</mx:FormItem>
 		</mx:AddChild>
 		<mx:SetEventHandler target="{button1}" name="click" handler="sendRegisterData()"/>
 		<mx:SetProperty target="{formheading1}" name="label" value="{TextI18n.getInstance().getText('registerTxt')}"/>
 	</mx:State>
 		
-	<mx:State name="A">
-		<mx:SetProperty target="{idUser}" name="width" value="200"/>
-		<mx:SetProperty target="{idUser}" name="height" value="20"/>
-		<mx:SetProperty target="{idPass}" name="width" value="150"/>
-		<mx:SetProperty target="{idPass}" name="height" value="15"/>
-		<mx:SetProperty target="{idTree}" name="width" value="150"/>
-		<mx:SetProperty target="{idTree}" name="height" value="15"/>
-		<mx:SetProperty target="{idConfirm}" name="width" value="150"/>
-		<mx:SetProperty target="{idConfirm}" name="height" value="15"/>
-	</mx:State>
-		
-	<mx:State name="B">
-		<mx:SetProperty target="{idUser}" name="width" value="150"/>
-		<mx:SetProperty target="{idUser}" name="height" value="20"/>
-		<mx:SetProperty target="{idPass}" name="width" value="200"/>
-		<mx:SetProperty target="{idPass}" name="height" value="15"/>
-		<mx:SetProperty target="{idTree}" name="width" value="150"/>
-		<mx:SetProperty target="{idTree}" name="height" value="15"/>
-		<mx:SetProperty target="{idConfirm}" name="width" value="150"/>
-		<mx:SetProperty target="{idConfirm}" name="height" value="15"/>
-	</mx:State>
-	
-	<mx:State name="C">
-		<mx:SetProperty target="{idUser}" name="width" value="150"/>
-		<mx:SetProperty target="{idUser}" name="height" value="15"/>
-		<mx:SetProperty target="{idPass}" name="width" value="150"/>
-		<mx:SetProperty target="{idPass}" name="height" value="15"/>
-		<mx:SetProperty target="{idTree}" name="width" value="200"/>
-		<mx:SetProperty target="{idTree}" name="height" value="20"/>
-		<mx:SetProperty target="{idConfirm}" name="width" value="150"/>
-		<mx:SetProperty target="{idConfirm}" name="height" value="15"/>
-	</mx:State>
-
-	<mx:State name="D">
-		<mx:SetProperty target="{idUser}" name="width" value="150"/>
-		<mx:SetProperty target="{idUser}" name="height" value="15"/>
-		<mx:SetProperty target="{idPass}" name="width" value="150"/>
-		<mx:SetProperty target="{idPass}" name="height" value="15"/>
-		<mx:SetProperty target="{idTree}" name="width" value="150"/>
-		<mx:SetProperty target="{idTree}" name="height" value="15"/>
-		<mx:SetProperty target="{idConfirm}" name="width" value="200"/>
-		<mx:SetProperty target="{idConfirm}" name="height" value="20"/>
-	</mx:State>
-		
 	</mx:states>
 	
 	<mx:transitions>
 		<mx:Transition fromState="*" toState="*">
-		<mx:Sequence targets="{[idUser, idPass, idTree, confirmPass]}">
+		<mx:Sequence targets="{[register, login]}">
 			<mx:Blur blurYFrom="0" blurYTo="10" duration="500" />
 			<mx:Parallel>
 				<mx:Move />
@@ -140,48 +96,48 @@
 
 
 	
-	<mx:VBox  horizontalAlign="left" verticalAlign="top" verticalGap="5" borderStyle="outset">
-		<mx:Canvas width="100%" height="101" alpha="1.0" cornerRadius="0">
+	<mx:VBox  horizontalAlign="left" verticalAlign="top" verticalGap="5" borderStyle="outset" id="vbox2">
+		<mx:Canvas width="100%" height="101" alpha="1.0" cornerRadius="0" id="canvas3">
 			<mx:Label x="230.5" y="10" text="{TextI18n.getInstance().getText('accountsTitle')}"
 						 width="309" height="70" enabled="true" fontSize="50"/>
 		</mx:Canvas>
 		<mx:HBox width="100%" height="302" horizontalGap="5">
-			<mx:Canvas width="200" height="302">
+			<mx:Canvas width="200" height="302" id="canvas1">
 				<mx:Button x="82" y="250" label="{TextI18n.getInstance().getText('logInBtn')}" 
-					width="108" height="28" click="currentState='login'" textAlign="center" themeColor="#009DFF"/>
+					width="108" height="28" click="currentState='login'" textAlign="center" themeColor="#009DFF" id="button2"/>
 			</mx:Canvas>
-			<mx:Form width="360" height="100%">
+			<mx:Form width="360" height="100%" id="form1">
 				<mx:FormHeading label="{TextI18n.getInstance().getText('logInTxt')}" width="322" id="formheading1"/>
 				<mx:VBox width="318" height="90%" borderStyle="outset" id="vbox1">
 					<mx:Spacer width="30" height="30"/>
 					<mx:FormItem label="{TextI18n.getInstance().getText('userName')}" labelWidth="100"
 									 styleName="accLabels" >
-						<mx:TextInput id="idUser" width="150" height="15" click="currentState='A'"/>
+						<mx:TextInput id="idUser" width="150" height="15"/>
 					</mx:FormItem>
 					<mx:FormItem label="{TextI18n.getInstance().getText('userPass')}" labelWidth="100"
 									styleName="accLabels">
 						<mx:TextInput id="idPass" 
-									click="currentState='B'"  width="150" height="15"/>
+									  width="150" height="15"/>
 					</mx:FormItem>
 					<mx:FormItem label="{TextI18n.getInstance().getText('tree')}" labelWidth="100"
 									 id="formitem1" styleName="accLabels">
 						<mx:TextInput id="idTree"
 									width="150" height="15"
-									click="currentState='D'" />
+									/>
 					</mx:FormItem>
-					<mx:Spacer width="30" height="30"/>
+					<mx:Spacer width="30" height="30" id="spacer1"/>
 					<mx:Button label="{TextI18n.getInstance().getText('climbInBtn')}"
 									 id="button1" />
 				</mx:VBox>
 			</mx:Form>
-			<mx:Canvas width="200" height="302">
+			<mx:Canvas width="200" height="302" id="canvas4">
 				<mx:Button x="10" y="249" label="{TextI18n.getInstance().getText('registerBtn')}" 
-							width="108" height="28" click="currentState='register'"/>
+							width="108" height="28" click="currentState='register'" id="button3"/>
 			</mx:Canvas>
 		</mx:HBox>
-		<mx:Canvas width="100%" height="87">
+		<mx:Canvas width="100%" height="87" id="canvas2">
 			<mx:Label x="462" y="39" text="{TextI18n.getInstance().getText('accountsFooter')}"
-						 width="298" height="38" fontSize="18"/>
+						 width="298" height="38" fontSize="18" id="label1"/>
 		</mx:Canvas>
 		
 	</mx:VBox>
