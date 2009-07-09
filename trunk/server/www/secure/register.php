@@ -28,6 +28,11 @@
 	$name-> appendChild($doc->createTextNode($user));
 	$pass = $root->appendChild($doc->createElement("Pass"));
 	$pass -> appendChild($doc->createTextNode($password));
+	
+	$wp = $doc->createElement("WallPaper");
+	$wp = $root->appendChild($wp);
+	
+	
 	$doc->save($confXml);
 	echo "OK";
 	//mkdir('pdp');
