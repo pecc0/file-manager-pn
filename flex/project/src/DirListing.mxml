@@ -61,18 +61,20 @@
 		}
 		
 		private function removeSelectedFiles(event:CloseEvent):void {
-			var dataPost:DataPost = new DataPost(new URLVariables());
-			dataPost.setUrl("/secure/fscommand.php");
-			dataPost.getData().dir = DirListing.getPathToNode(getSelectedDirectory());
-			dataPost.getData().command = "delete"
-			trace("deleting " + files);
-			var files:String = "";
-			for each (var f:XML in tileList.selectedItems) {
-				files += f.@name + ";"; 
+			if (event.detail == Alert.YES) {
+				var dataPost:DataPost = new DataPost(new URLVariables());
+				dataPost.setUrl("/secure/fscommand.php");
+				dataPost.getData().dir = DirListing.getPathToNode(getSelectedDirectory());
+				dataPost.getData().command = "delete"
+				trace("deleting " + files);
+				var files:String = "";
+				for each (var f:XML in tileList.selectedItems) {
+					files += f.@name + ";"; 
+				}
+				dataPost.getData().parameter = files;
+				dataPost.onComplete = onListingReceived;
+				dataPost.doPost();
 			}
-			dataPost.getData().parameter = files;
-			dataPost.onComplete = onListingReceived;
-			dataPost.doPost();
 		}
 		
 		private function createCopyMovePost():DataPost {
@@ -133,8 +135,8 @@
 					files += "\"" + f.@name + "\" "; 
 				}
 				if (files.length > 0) {
-	        		Alert.show("Delete " + files + "?", "Delete?", 4, null, 
-	        			removeSelectedFiles, null, Alert.YES | Alert.NO);
+	        		Alert.show("Delete " + files + "?", "Delete?", Alert.YES | Alert.NO, null, 
+	        			removeSelectedFiles, null, Alert.YES);
     			}
     		} else if (event.item.@data == "copy"){
     			if (tileList.selectedItems.length > 0) {

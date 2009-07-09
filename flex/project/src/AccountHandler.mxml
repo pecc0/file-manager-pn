@@ -34,8 +34,10 @@
 			}
 			private function sendRegisterData ():void
 			{
-				//TODO Alip, napravi kontrol na parolata-dali sa ednakvi pass i confirm pass
-
+				if (idConfirm.text != idPass.text) {
+					Alert.show(TextI18n.getInstance().getText("passmissmatch"));
+					return;
+				}
 				var dataPost:DataPost = new DataPost(new URLVariables());
 				dataPost.setUrl("/secure/register.php");
 				dataPost.getData().user = idUser.text;
@@ -69,9 +71,9 @@
 	
 	<mx:State name="register" id="register">
 		<mx:AddChild relativeTo="{formitem1}" position="before">
-			<mx:FormItem label="{TextI18n.getInstance().getText('confirmPass')}" labelWidth="100"
+			<mx:FormItem label="{TextI18n.getInstance().getText('confirmPass')}" labelWidth="140"
 				styleName="accLabels">
-				<mx:TextInput id="idConfirm" click="currentState='C'"  width="150" height="15"/>
+				<mx:TextInput id="idConfirm"  width="150" height="18" displayAsPassword="true"/>
 			</mx:FormItem>
 		</mx:AddChild>
 		<mx:SetEventHandler target="{button1}" name="click" handler="sendRegisterData()"/>
@@ -112,19 +114,19 @@
 				<mx:FormHeading label="{TextI18n.getInstance().getText('logInTxt')}" width="322" id="formheading1"/>
 				<mx:VBox width="318" height="90%" borderStyle="outset" id="vbox1">
 					<mx:Spacer width="30" height="30"/>
-					<mx:FormItem label="{TextI18n.getInstance().getText('userName')}" labelWidth="100"
+					<mx:FormItem label="{TextI18n.getInstance().getText('userName')}" labelWidth="140"
 									 styleName="accLabels" >
-						<mx:TextInput id="idUser" width="150" height="15"/>
+						<mx:TextInput id="idUser" width="150" height="18"/>
 					</mx:FormItem>
-					<mx:FormItem label="{TextI18n.getInstance().getText('userPass')}" labelWidth="100"
-									styleName="accLabels">
+					<mx:FormItem label="{TextI18n.getInstance().getText('userPass')}" labelWidth="140"
+									styleName="accLabels" >
 						<mx:TextInput id="idPass" 
-									  width="150" height="15"/>
+									  width="150"  displayAsPassword="true" height="18"/>
 					</mx:FormItem>
-					<mx:FormItem label="{TextI18n.getInstance().getText('tree')}" labelWidth="100"
+					<mx:FormItem label="{TextI18n.getInstance().getText('tree')}" labelWidth="140"
 									 id="formitem1" styleName="accLabels">
 						<mx:TextInput id="idTree"
-									width="150" height="15"
+									width="150" height="18"
 									/>
 					</mx:FormItem>
 					<mx:Spacer width="30" height="30" id="spacer1"/>
