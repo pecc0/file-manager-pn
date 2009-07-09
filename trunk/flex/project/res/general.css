@@ -22,7 +22,7 @@ Button
 
 .accLabels {
 	color: #f2c926;
-	font-weight: normal;
+	font-weight: bold;
 	fontFamily: Calibri;
 	fontSize: 14;
 }
@@ -31,12 +31,12 @@ Button
 	fontFamily: Calibri;
 	fontWeight: bold;
 	fontStyle: normal;
-	src: local("Calibri");
+	src: url("calibrib.ttf");
 }
 @font-face
 {
 	fontFamily: Calibri;
 	fontWeight: normal;
 	fontStyle: normal;
-	src: local("Calibri");
+	src: url("calibri.ttf");
 }

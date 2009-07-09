@@ -6,7 +6,7 @@
 	
 	
 	/**
-	 * ...
+	 * General class used to make request to certain url on the server
 	 * @author Petko
 	 */
 	public class DataPost extends EventDispatcher
@@ -39,14 +39,15 @@
 		public static function setSetverUrl(url:String):void {
 			serverUrl = url;
 		}
-		
+		public static function getNonSecureUrl():String {
+			return "http://" + URLUtil.getServerNameWithPort(serverUrl);
+		}
 		public static function setSID(sid:String):void {
 			sessionId = sid;
 		}
 		
 		public function DataPost(dataSent:Object) 
 		{
-			
 			request = new URLRequest();
 			request.data = dataSent;
 			loader = new URLLoader();
@@ -69,7 +70,7 @@
 		 */
 		public function setUrlNonSecure(url:String):void {
 			if (url.charAt(0) == "/") {
-				url = "http://" + URLUtil.getServerNameWithPort(serverUrl) + url;
+				url = getNonSecureUrl() + url;
 			}
 			request.url = url;
 		}

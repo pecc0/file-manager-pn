@@ -4,8 +4,8 @@
 	height="100%"
 	horizontalAlign="center" 
 	verticalAlign="middle"
-	 currentState="accounts">
-	
+	 currentState="notInitted"
+	 >
 	<mx:states>
 		<mx:State name="notInitted">
 			<mx:AddChild position="lastChild">
@@ -30,6 +30,7 @@
 		<mx:State name="paint">
 			<mx:AddChild position="lastChild">
 				<ns1:PaintHandler 
+					id = "paintHandler"
 					creationComplete="event.target.addEventListener('paintClosed', onLoginSucceeded);">
 				</ns1:PaintHandler>
 			</mx:AddChild>
@@ -73,10 +74,12 @@
 		
 		private function onLoginSucceeded(event:Event):void {
 			currentState = "fileManagement";
+			fileHandler.initCollections();
 		}
 		
 		private function onPaintSelected(event:Event):void {
 			currentState = "paint";
+			paintHandler.openFile(fileHandler.dirListing.getSelectedFile());
 		} 
 		]]> 
 	</mx:Script>

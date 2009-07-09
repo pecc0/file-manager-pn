@@ -14,10 +14,14 @@ import com.filemanagerpn.OpenSaveFileDialog;
 import com.filemanagerpn.SaveFileDialog;
 import com.filemanagerpn.UploadDownloadDialog;
 
+import flash.display.Loader;
 import flash.events.*;
+import flash.net.URLRequest;
 
 import mx.containers.Canvas;
-
+private var loader:Loader;
+private var request:URLRequest;
+		
 private function init(e:Event):void {
 	//trace("init");
 	var canvas:Canvas = Canvas(e.target); 
@@ -29,7 +33,7 @@ private function init(e:Event):void {
 
 private function onMouseDown(e:MouseEvent): void {
 	//trace("onMouseDown")
-	e.target.graphics.moveTo(e.target.mouseX,e.target.mouseY);
+	canvas_board.graphics.moveTo(e.target.mouseX,e.target.mouseY);
 	e.target.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 }
 
@@ -76,6 +80,41 @@ private function onSaveDlg(event:DialogFileSelectedEvent):void {
 	saveJPG(event.file);
 }
 
+public function openFile(fname:String):void{
+	if (fname.length > 0) {
+		fileName = fname;
+		DataPost.createTempSession("download", fileName, onOpenSid);
+	}	
+}
+
+private function onOpenSid(aRequest:URLRequest, aLoader:URLLoader):void {
+	loader = new Loader();
+	request = new URLRequest(DataPost.getNonSecureUrl() + "/downloadFile.php?" + aLoader.data);
+	loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onDownloadComplete);
+	loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, errorCatcher);
+	loader.load(request);
+}
+private function errorCatcher(event:Event):void {
+	fileName = "";
+}
+private function onDownloadComplete(event:Event):void {
+	var width:Number = Math.min(loader.width, canvas_board.width);
+	var height:Number = Math.min(loader.height, canvas_board.height);
+
+	var source:BitmapData = new BitmapData(width, height);
+	source.draw(loader);
+	 
+	canvas_board.graphics.beginBitmapFill( source, null, false, true);
+	
+	canvas_board.graphics.moveTo(0, 0);
+    canvas_board.graphics.lineTo(0, height);
+    canvas_board.graphics.lineTo(width, height);
+    canvas_board.graphics.lineTo(width, 0);
+    canvas_board.graphics.lineTo(0, 0);
+
+	canvas_board.graphics.endFill();
+}
+		
 private function onSidReceived(aRequest:URLRequest, loader:URLLoader):void {
 	var jpgSource:BitmapData = new BitmapData (canvas_board.width, canvas_board.height);
 	jpgSource.draw(canvas_board);

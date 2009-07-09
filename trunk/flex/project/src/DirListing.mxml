@@ -219,6 +219,13 @@
 			postListingRequest(path);
 		}
 		
+		public function getSelectedFile():String{
+			if (tileList.selectedItem == null) {
+				return "";
+			}
+			return DirListing.getPathToNode(getSelectedDirectory()) + tileList.selectedItem.@name;
+		}
+		
 		private function expandBranch(node:XML):void {
 			if (node.parent() != undefined) {
 				expandBranch(node.parent());
@@ -404,6 +411,7 @@
 				>
 				</mx:Tree>
 		</mx:VBox>
+		
 		<mx:TileList width="100%" height="100%" 
 			labelFunction="tileLabel"
 			dataProvider="{tileListData}"
@@ -412,6 +420,7 @@
 			columnWidth="75"
 			allowMultipleSelection="true" 
 			 fontSize="10" fontFamily="Arial" cornerRadius="0" borderStyle="solid" borderColor="#000000">
+			 
 		</mx:TileList>
 	</mx:HBox>
 </mx:Module>
