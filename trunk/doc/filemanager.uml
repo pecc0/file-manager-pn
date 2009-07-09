@@ -146,4 +146,9 @@
   <packagedElement xmi:type="uml:Dependency" xmi:id="_gbmXgGoIEd69btqTYEzH5w" supplier="_Yjfy0GoIEd69btqTYEzH5w" client="_oOqoAGoEEd69btqTYEzH5w"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_hOaUgGoIEd69btqTYEzH5w" supplier="_cg9t8GoIEd69btqTYEzH5w" client="_4o5l0GoEEd69btqTYEzH5w"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_i4qP0GoIEd69btqTYEzH5w" supplier="_AVcv4GoHEd69btqTYEzH5w" client="_vMNo8GoEEd69btqTYEzH5w"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZL2t8GxmEd6WwZoAeF5cyQ" name="WallPaper" clientDependency="_zUXH4GxmEd6WwZoAeF5cyQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aGtzsGxmEd6WwZoAeF5cyQ" name="setUserData.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ewvS0GxmEd6WwZoAeF5cyQ" name="getUserData.php"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_qpJEMGxmEd6WwZoAeF5cyQ" name="exit.php"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_zUXH4GxmEd6WwZoAeF5cyQ" supplier="_vMNo8GoEEd69btqTYEzH5w" client="_ZL2t8GxmEd6WwZoAeF5cyQ"/>
 </uml:Package>
