@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0"?>
 <Texts>
-	<Text id='userName'>Потребителско Име</Text>
+	<Text id='userName'>Потребител</Text>
 	<Text id='userPass'>Парола</Text>
-	<Text id='confirmPass'>Потвърди паролата</Text>
+	<Text id='confirmPass'>Потвърди</Text>
 	<Text id='tree'>Избери си дърво</Text>
 	<Text id='climbInBtn'>Качи се</Text>
 	<Text id='registerBtn'>Регистрация</Text>
@@ -19,5 +19,18 @@
 	<Text id='wrongPass'>Грешна парола</Text>
 	<Text id='fhUserName'>Потребител {0}</Text>
 	<Text id='fhLofOut'>Изход</Text>
+	<Text id='fhTools'>Инструменти</Text>
+	<Text id='fhPaint'>Рисуване</Text>
+	<Text id='fhSetWallPaper'>Сложи за тапет</Text>
+	<Text id='dlFile'>Файл</Text>
+	<Text id='dlRefresh'>Обновяване</Text>
+	<Text id='dlNewDirectory'>Нова директория</Text>
+	<Text id='dlRemove'>Изтриване</Text>
+	<Text id='dlCopy'>Копиране</Text>
+	<Text id='dlMove'>Местене/Преименуване</Text>
+	<Text id='dlUpload'>Качване на файл</Text>
+	<Text id='dlDownload'>Сваляне на файл</Text>
 	<Text id='fileNotFound'>Файлът '{0}' не беше намерен</Text>
+	<Text id='passmissmatch'>Внимавай: паролите не съвпадат</Text>
+	
 </Texts>
