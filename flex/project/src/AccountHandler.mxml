@@ -83,12 +83,14 @@
 	<mx:transitions>
 		<mx:Transition fromState="*" toState="*">
 		<mx:Sequence targets="{[register, login]}">
+		<!--
 			<mx:Blur blurYFrom="0" blurYTo="10" duration="500" />
 			<mx:Parallel>
 				<mx:Move />
 				<mx:Resize />
 			</mx:Parallel>
 			<mx:Blur blurYFrom="10" blurYTo="0" duration="100" />
+			-->
 		</mx:Sequence>
 		</mx:Transition>
 	</mx:transitions>

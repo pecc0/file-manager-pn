@@ -4,10 +4,11 @@
 	height="100%"
 	horizontalAlign="center" 
 	verticalAlign="middle"
-	creationComplete="initCollections();"
+	 creationComplete="initCollections();"
 	 xmlns:ns1="*">
 	<mx:Script>
         <![CDATA[
+        	import com.filemanagerpn.WallPaper;
         	import com.filemanagerpn.DirectoryEvent;
         	import com.filemanagerpn.TextI18n;
 
@@ -18,6 +19,8 @@
             [Bindable]
             public var menuBarCollection:XMLListCollection;
     
+    		private var wallPaper:WallPaper;
+    		
             private var menubarXML:XML = 
                 <r>
                 	<menuitem label="fhUserName">
@@ -25,6 +28,7 @@
                     </menuitem>
                     <menuitem label="fhTools">
                         <menuitem label="fhPaint" data="paint"/>
+                        <menuitem label="fhSetWallPaper" data="setWp"/>
                         <menuitem label="MenuItem 1-B" data="1B"/>
                     </menuitem>
                     <menuitem label="Menu2">
@@ -35,8 +39,11 @@
             private function menuHandler(event:MenuEvent):void  {
             	if (event.item.@data == "paint") {
             		dispatchEvent(new Event("paintSelected"));
+            		
+            	} else if (event.item.@data == "setWp") {
+            		wallPaper.setWallPaper(dirListing.getSelectedFile());
             	} else {
-	                Alert.show("Label: " + event.item.@label + "\n" + 
+	                Alert.show("Label:1232 " + event.item.@label + "\n" + 
 	                    "Data: " + event.item.@data, "Clicked menu item");
 				}
             }
@@ -48,14 +55,18 @@
 			private function onListingReceived(event:DirectoryEvent):void {
 				menubarXML.menuitem.(@label=="fhUserName").@label="fhUserName(" + event.userName + ")";
 				dirListing.removeEventListener(DirListing.LISTING_RECEIVED, onListingReceived);
+				
 			}
 			
             // Event handler to initialize the MenuBar control.
-            private function initCollections():void {
+            public function initCollections():void {
             	//add the user name as "id parameter"
             	
             	dirListing.addEventListener(DirListing.LISTING_RECEIVED, onListingReceived);
             	dirListing.openFile("/");
+            	wallPaper = new WallPaper(dirListing.tileList);
+            	wallPaper.initWallPaper();
+            	
                 menuBarCollection = new XMLListCollection(menubarXML.children());
             }
          ]]>

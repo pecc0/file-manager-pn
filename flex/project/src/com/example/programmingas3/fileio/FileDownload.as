@@ -35,6 +35,7 @@
             fr.addEventListener(Event.OPEN, openHandler);
             fr.addEventListener(ProgressEvent.PROGRESS, progressHandler);
             fr.addEventListener(Event.COMPLETE, completeHandler);
+            trace(">" + getData().serverfile);
             createTempSession("download", getData().serverfile, onSidReceived);
         }
 
