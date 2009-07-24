@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Build localle" default="build-locale" basedir=".">
+
+	<taskdef resource="flexTasks.tasks" classpath="../libs/flexTasks.jar" />
+
+	<property name="FLEX_HOME" value="E:/Transfer/flexBuilder3/sdks/3.0.0" />
+	<target name="build-locale">
+		<antcall target="en_US">
+		</antcall>
+		<antcall target="bg_BG">
+		</antcall>
+	</target>
+	<target name="en_US">
+		<mxmlc>
+			<locale>en_US</locale>
+			<source-path>../locale/{locale}</source-path>
+			<include-resource-bundles>mainBundle</include-resource-bundles>
+			<!--<include-resource-bundles>anotherBundle</include-resource-bundles>-->
+			<output>../bin-debug/Resources_en_US.swf</output>
+		</mxmlc>
+	</target>
+	<target name="bg_BG">
+		<mxmlc>
+			<locale>bg_BG</locale>
+			<source-path>../locale/{locale}</source-path>
+			<include-resource-bundles>mainBundle</include-resource-bundles>
+			<!--<include-resource-bundles>anotherBundle</include-resource-bundles>-->
+			<output>../bin-debug/Resources_bg_BG.swf</output>
+		</mxmlc>
+	</target>
+
+</project>

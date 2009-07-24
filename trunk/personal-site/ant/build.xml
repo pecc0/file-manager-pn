@@ -1,0 +1,30 @@
+<project name="build" default="build-all" basedir=".">
+	<taskdef resource="flexTasks.tasks" classpath="../libs/flexTasks.jar" />
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="../libs/ant-contrib-0.6.jar" />
+
+	<import file="deploy.xml">
+	</import>
+	<import file="build-locale.xml">
+	</import>
+	<target name="build">
+		<for param="file">
+			<path>
+				<fileset dir="../src" includes="*.mxml" />
+			</path>
+			<sequential>
+				<basename property="fname" file="@{file}" suffix=".mxml">
+				</basename>
+				<mxmlc file="@{file}" output="../bin-debug/${fname}.swf">
+				</mxmlc>
+			</sequential>
+		</for>
+	</target>
+	<target name="build-all">
+		<antcall target="build">
+		</antcall>
+		<antcall target="build-locale">
+		</antcall>
+		<antcall target="deploy">
+		</antcall>
+	</target>
+</project>
