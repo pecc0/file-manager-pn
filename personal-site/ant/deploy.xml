@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<project name="deploy" default="deploy" basedir="." >
+	
+	<property name="serverRoot" value="D:/workspace/flexFileManager/server/www" />
+	<property file="local.properties" />
+	<target name="deploy">
+		<ftp server="free.hit.bg" 
+			userid="${ftpuser}" 
+			password="${ftppass}" 
+			depends="yes">
+			<fileset dir="../bin-debug" />
+		</ftp>
+	</target>
+</project>
