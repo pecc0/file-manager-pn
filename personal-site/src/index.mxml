@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
+	<mx:Script>
+		<![CDATA[
+			import hit.petkosite.texts.TextI18n;
+			private function test1():void
+			{
+				
+			}
+			private function initApp():void
+			{
+				TextI18n.init(resourceManager);
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox x="0" y="0" width="100%" height="100%">
+		<mx:HBox width="100%" height="22" horizontalAlign="right">
+			<mx:ToggleButtonBar itemClick="TextI18n.getInstance().changeLanguage(event.item.data)">
+				<mx:dataProvider>
+				      <mx:Array>
+				        
+				        <mx:Object label="En" data="en_US"></mx:Object>
+				        <mx:Object label="Bg" data="bg_BG"></mx:Object>
+				      </mx:Array>
+				</mx:dataProvider>
+			
+			</mx:ToggleButtonBar>
+		</mx:HBox>
+		<mx:TabNavigator width="100%" height="100%">
+			<mx:Canvas label="{TextI18n.getInstance().getText('home')}" width="100%" height="0">
+			</mx:Canvas>
+			<mx:VBox label="{TextI18n.getInstance().getText('projects')}" width="100%" height="100%">
+			<mx:Button label="Button" click="test1()"/>
+			</mx:VBox>
+		</mx:TabNavigator>
+	</mx:VBox>
 	
 </mx:Application>
