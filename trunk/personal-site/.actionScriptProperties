@@ -11,6 +11,8 @@
 <applications>
 <application path="index.mxml"/>
 </applications>
-<modules/>
+<modules>
+<module application="src/index.mxml" destPath="hit/petkosite/customcomponents/HideableVMenu.swf" optimize="true" sourcePath="src/hit/petkosite/customcomponents/HideableVMenu.mxml"/>
+</modules>
 <buildCSSFiles/>
 </actionScriptProperties>
