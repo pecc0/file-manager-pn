@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="horizontal"
+	 xmlns:ns1="hit.petkosite.customcomponents.*"
+	 creationComplete="inited()"
+	 >
+<mx:Script>
+import mx.effects.*;
+import mx.effects.effectClasses.*;
+import mx.events.*;
+import mx.core.*;
+
+public var resizeInst:ResizeInstance;
+private function inited():void{
+	r.play([vmb], true);
+	vmb.addEventListener(MouseEvent.MOUSE_OVER, handleMouse);
+	vmb.addEventListener(MouseEvent.MOUSE_OUT, handleMouse);
+}
+public function handleMouse(event:MouseEvent):void
+{
+	/*
+	if (resizeInst)
+		resizeInst.reverse();
+	else
+		r.play([vmb],event.type==MouseEvent.MOUSE_OUT);*/
+		trace("evt");
+	
+}
+
+</mx:Script>
+<mx:Resize id="r" widthTo="100" widthFrom="50" 
+	effectStart="resizeInst = ResizeInstance(event.effectInstance);" effectEnd="resizeInst=null"
+	/>
+	
+	<ns1:VMenuBar id="vmb" />
+	
+	
+</mx:Module>
